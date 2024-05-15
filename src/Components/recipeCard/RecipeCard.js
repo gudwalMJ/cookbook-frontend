@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./RecipeCard.css";
 
 const RecipeCard = ({ recipe }) => {
@@ -12,7 +13,7 @@ const RecipeCard = ({ recipe }) => {
       <div className="recipe-info">
         <h3>{recipe.title}</h3>
         <p>{recipe.description}</p>
-        <button>View Recipe</button>
+        <Link to={`/recipes/${recipe._id}`}>View Recipe</Link>
       </div>
     </div>
   );
