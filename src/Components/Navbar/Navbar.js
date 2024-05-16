@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./navbar.css";
 
 const Navbar = () => {
+  const token = localStorage.getItem("token");
+
   return (
     <ul>
       <li>
@@ -14,6 +16,11 @@ const Navbar = () => {
       <li>
         <Link to="/login">Login</Link>
       </li>
+      {token && (
+        <li>
+          <Link to="/profile">Profile</Link>
+        </li>
+      )}
     </ul>
   );
 };
