@@ -1,6 +1,8 @@
 import React, { useState, useMemo, useEffect } from "react";
 import debounce from "lodash.debounce";
 import API from "../../api/api";
+// Styling
+import "./SearchBar.css";
 
 const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
   const [searchTerm, setSearchTerm] = useState("");

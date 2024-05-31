@@ -1,3 +1,4 @@
+// src/components/homePage/HomePage.js
 import React, { useState } from "react";
 // Components
 import FeaturedRecipes from "../recipeCard/FeaturedRecipes";
@@ -13,20 +14,26 @@ const HomePage = () => {
   const [error, setError] = useState("");
 
   return (
-    <div>
-      <SearchBar
-        setRecipes={setRecipes}
-        setIsLoading={setIsLoading}
-        setNoResults={setNoResults}
-        setError={setError}
-      />
+    <div className="home-page">
+      <div className="search-bar">
+        <SearchBar
+          setRecipes={setRecipes}
+          setIsLoading={setIsLoading}
+          setNoResults={setNoResults}
+          setError={setError}
+        />
+      </div>
       {isLoading && <div className="spinner"></div>}
-      {noResults && <div>No results found.</div>}
-      {error && <div>Error: {error}</div>}
-      {recipes.map((recipe) => (
-        <RecipeCard key={recipe._id} recipe={recipe} />
-      ))}
-      <FeaturedRecipes />
+      {noResults && <div className="no-results">No results found.</div>}
+      {error && <div className="error">Error: {error}</div>}
+      <div className="recipes-list">
+        {recipes.map((recipe) => (
+          <RecipeCard key={recipe._id} recipe={recipe} />
+        ))}
+      </div>
+      <div className="featured-recipes">
+        <FeaturedRecipes />
+      </div>
     </div>
   );
 };

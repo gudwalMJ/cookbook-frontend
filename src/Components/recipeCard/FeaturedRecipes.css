@@ -1,0 +1,27 @@
+/* src/components/recipeCard/FeaturedRecipes.css */
+.featured-recipes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Space between recipe cards */
+}
+
+.featured-recipes .recipe-card {
+  flex: 1 1 calc(33.333% - 40px); /* Three items per row, accounting for gap */
+  box-sizing: border-box;
+  max-width: calc(33.333% - 40px);
+}
+
+@media (max-width: 900px) {
+  .featured-recipes .recipe-card {
+    flex: 1 1 calc(50% - 40px); /* Two items per row for smaller screens */
+    max-width: calc(50% - 40px);
+  }
+}
+
+@media (max-width: 600px) {
+  .featured-recipes .recipe-card {
+    flex: 1 1 100%; /* One item per row for very small screens */
+    max-width: 100%;
+  }
+}
