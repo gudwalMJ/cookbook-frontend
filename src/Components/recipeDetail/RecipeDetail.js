@@ -1,9 +1,12 @@
+// src/components/recipeDetail/RecipeDetail.js
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import API from "../../api/api";
+import "./RecipeDetail.css";
 
 const RecipeDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [recipe, setRecipe] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -26,7 +29,10 @@ const RecipeDetail = () => {
   if (!recipe) return <p>No recipe found.</p>;
 
   return (
-    <div>
+    <div className="recipe-detail">
+      <button className="back-button" onClick={() => navigate("/")}>
+        &larr; Back to Home
+      </button>
       <h1>{recipe.title}</h1>
       <img src={recipe.imageUrls[0]} alt={recipe.title} />
       <p>{recipe.description}</p>
