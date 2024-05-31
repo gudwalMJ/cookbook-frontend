@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -9,16 +9,12 @@ import {
   faUser,
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import useLogout from "../user/logout/Logout";
 import "./navbar.css";
 
 const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
-  const navigate = useNavigate();
   const token = localStorage.getItem("token");
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/login");
-  };
+  const handleLogout = useLogout(); // Use the logout logic
 
   return (
     <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
