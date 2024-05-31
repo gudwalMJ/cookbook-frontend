@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "react-modal";
+// Import Components
+import AddRecipe from "../../addRecipe/AddRecipe";
+// Styling
 import "./Profile.css";
 
 Modal.setAppElement("#root"); // For accessibility
@@ -11,6 +14,7 @@ const Profile = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddRecipeModalOpen, setIsAddRecipeModalOpen] = useState(false);
 
   const fetchUser = async () => {
     try {
@@ -53,6 +57,7 @@ const Profile = () => {
       <h1>Profile</h1>
       <p>Username: {user.username}</p>
       <button onClick={() => setIsModalOpen(true)}>Update Profile</button>
+      <button onClick={() => setIsAddRecipeModalOpen(true)}>Add Recipe</button>
 
       <Modal
         isOpen={isModalOpen}
@@ -82,6 +87,12 @@ const Profile = () => {
           </button>
         </form>
       </Modal>
+
+      <AddRecipe
+        isModalOpen={isAddRecipeModalOpen}
+        closeModal={() => setIsAddRecipeModalOpen(false)}
+        fetchRecipes={fetchUser} // Assuming fetchRecipes will refresh recipes in profile
+      />
     </div>
   );
 };

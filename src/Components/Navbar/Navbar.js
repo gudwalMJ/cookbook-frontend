@@ -14,7 +14,7 @@ import "./navbar.css";
 
 const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
   const token = localStorage.getItem("token");
-  const handleLogout = useLogout(); // Use the logout logic
+  const handleLogout = useLogout();
 
   return (
     <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>

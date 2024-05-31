@@ -2,6 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../../api/api";
+// import components
+import Slideshow from "../slideshow/Slideshow";
+// import styling
 import "./RecipeDetail.css";
 
 const RecipeDetail = () => {
@@ -34,7 +37,7 @@ const RecipeDetail = () => {
         &larr; Back to Home
       </button>
       <h1>{recipe.title}</h1>
-      <img src={recipe.imageUrls[0]} alt={recipe.title} />
+      <Slideshow images={recipe.imageUrls} />
       <p>{recipe.description}</p>
       <h3>Ingredients</h3>
       <ul>

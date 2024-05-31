@@ -1,0 +1,52 @@
+/* src/components/addRecipe/AddRecipe.css */
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  margin: 100px auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal h2 {
+  margin-top: 0;
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal form input,
+.modal form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.modal form button {
+  padding: 10px 20px;
+  font-size: 1em;
+  color: white;
+  background-color: #09f;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.modal form button[type="button"] {
+  background-color: #ccc;
+  color: #333;
+}
+
+.modal form button:hover {
+  background-color: #007acc;
+}
+
+.modal form button[type="button"]:hover {
+  background-color: #aaa;
+}

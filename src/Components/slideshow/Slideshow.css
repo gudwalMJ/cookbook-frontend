@@ -1,0 +1,10 @@
+/* src/components/slideshow/Slideshow.css */
+.slide-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.slick-slider {
+  margin-bottom: 20px;
+}
