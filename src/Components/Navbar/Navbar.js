@@ -1,9 +1,17 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-// Styling
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBars,
+  faHome,
+  faUserPlus,
+  faSignInAlt,
+  faUser,
+  faSignOutAlt,
+} from "@fortawesome/free-solid-svg-icons";
 import "./navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
@@ -13,30 +21,50 @@ const Navbar = () => {
   };
 
   return (
-    <ul>
-      <li>
-        <Link to="/">Home</Link>
-      </li>
-      {!token ? (
-        <>
-          <li>
-            <Link to="/signup">SignUp</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-        </>
-      ) : (
-        <>
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li>
-            <button onClick={handleLogout}>Logout</button>
-          </li>
-        </>
-      )}
-    </ul>
+    <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+      <button className="sidebar-toggle" onClick={toggleSidebar}>
+        <FontAwesomeIcon icon={faBars} />
+      </button>
+      <ul>
+        <li>
+          <Link to="/">
+            <FontAwesomeIcon icon={faHome} />
+            {isSidebarOpen && <span>Home</span>}
+          </Link>
+        </li>
+        {!token ? (
+          <>
+            <li>
+              <Link to="/signup">
+                <FontAwesomeIcon icon={faUserPlus} />
+                {isSidebarOpen && <span>SignUp</span>}
+              </Link>
+            </li>
+            <li>
+              <Link to="/login">
+                <FontAwesomeIcon icon={faSignInAlt} />
+                {isSidebarOpen && <span>Login</span>}
+              </Link>
+            </li>
+          </>
+        ) : (
+          <>
+            <li>
+              <Link to="/profile">
+                <FontAwesomeIcon icon={faUser} />
+                {isSidebarOpen && <span>Profile</span>}
+              </Link>
+            </li>
+            <li>
+              <button onClick={handleLogout}>
+                <FontAwesomeIcon icon={faSignOutAlt} />
+                {isSidebarOpen && <span>Logout</span>}
+              </button>
+            </li>
+          </>
+        )}
+      </ul>
+    </div>
   );
 };
 

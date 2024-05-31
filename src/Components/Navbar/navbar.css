@@ -1,9 +1,65 @@
-nav ul {
+.sidebar {
+  height: 100%;
+  width: 60px; /* Initial width of the sidebar */
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  transition: width 0.3s;
+  overflow-x: hidden;
+  padding-top: 20px;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  width: 200px; /* Expanded width of the sidebar */
+}
+
+.sidebar-toggle {
+  font-size: 1.5em;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  margin: 10px;
+}
+
+.sidebar ul {
   list-style-type: none;
   padding: 0;
 }
 
-nav ul li {
-  display: inline;
-  margin-right: 10px;
+.sidebar ul li {
+  padding: 15px 10px;
+  text-align: left;
+}
+
+.sidebar ul li a,
+.sidebar ul li button {
+  text-decoration: none;
+  font-size: 1.2em;
+  color: white;
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  text-align: left;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li button:hover {
+  background-color: #575757;
+}
+
+.sidebar ul li a span,
+.sidebar ul li button span {
+  margin-left: 10px;
+}
+
+.sidebar ul li button {
+  width: 100%;
 }

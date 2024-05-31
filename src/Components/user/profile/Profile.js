@@ -4,7 +4,6 @@ import axios from "axios";
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
@@ -16,7 +15,6 @@ const Profile = () => {
         });
         setUser(response.data);
         setUsername(response.data.username);
-        setEmail(response.data.email);
       } catch (error) {
         console.error("Error fetching user:", error.response.data.error);
       }
@@ -31,7 +29,7 @@ const Profile = () => {
       const token = localStorage.getItem("token");
       await axios.put(
         "/api/users/me",
-        { username, email, password },
+        { username, password },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert("Profile updated successfully");
@@ -50,13 +48,6 @@ const Profile = () => {
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        required
-      />
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
         required
       />
       <input

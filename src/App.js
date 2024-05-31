@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Import Components
 import HomePage from "./components/homePage/HomePage";
@@ -7,19 +8,29 @@ import Navbar from "./components/navbar/Navbar";
 import SignUp from "./components/user/signUp/signUp.js";
 import Login from "./components/user/login/Login";
 import Profile from "./components/user/profile/Profile.js";
+// Import Styling
+import "./index.css";
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <Router>
       <div>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/recipes/:id" element={<RecipeDetail />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
+        <Navbar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+        <div className={`main-content ${isSidebarOpen ? "expanded" : ""}`}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/recipes/:id" element={<RecipeDetail />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   );

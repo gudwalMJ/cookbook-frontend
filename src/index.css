@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+.main-content {
+  margin-left: 60px; /* Adjust this value to match the collapsed width of your sidebar */
+  transition: margin-left 0.3s;
+}
+
+.main-content.expanded {
+  margin-left: 200px; /* Adjust this value to match the expanded width of your sidebar */
+}
