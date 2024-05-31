@@ -4,6 +4,7 @@ import axios from "axios";
 import Modal from "react-modal";
 // Import Components
 import AddRecipe from "../../addRecipe/AddRecipe";
+import UserRecipes from "../../userRecipes/UserRecipes";
 // Styling
 import "./Profile.css";
 
@@ -91,8 +92,10 @@ const Profile = () => {
       <AddRecipe
         isModalOpen={isAddRecipeModalOpen}
         closeModal={() => setIsAddRecipeModalOpen(false)}
-        fetchRecipes={fetchUser} // Assuming fetchRecipes will refresh recipes in profile
+        fetchRecipes={() => {}}
       />
+
+      <UserRecipes userId={user._id} />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 // src/components/recipeDetail/RecipeDetail.js
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import API from "../../api/api";
 // import components
 import Slideshow from "../slideshow/Slideshow";
@@ -13,6 +13,7 @@ const RecipeDetail = () => {
   const [recipe, setRecipe] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
@@ -27,6 +28,22 @@ const RecipeDetail = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await API.get("/api/users/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUser(response.data);
+      } catch (error) {
+        console.error("Error fetching user:", error.response.data.error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
   if (!recipe) return <p>No recipe found.</p>;
@@ -39,6 +56,11 @@ const RecipeDetail = () => {
       <h1>{recipe.title}</h1>
       <Slideshow images={recipe.imageUrls} />
       <p>{recipe.description}</p>
+      {user && user._id === recipe.creator && (
+        <Link to={`/edit-recipe/${recipe._id}`} className="edit-button">
+          Edit Recipe
+        </Link>
+      )}
       <h3>Ingredients</h3>
       <ul>
         {recipe.ingredients.map((ingredient, index) => (

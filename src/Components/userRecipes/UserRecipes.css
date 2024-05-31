@@ -1,0 +1,28 @@
+/* src/components/userRecipes/UserRecipes.css */
+.user-recipes {
+  margin-top: 20px;
+}
+
+.user-recipes h2 {
+  font-size: 1.8em;
+  color: #333;
+}
+
+.user-recipes ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.user-recipes li {
+  margin-bottom: 10px;
+}
+
+.user-recipes li a {
+  text-decoration: none;
+  color: #09f;
+  transition: color 0.3s;
+}
+
+.user-recipes li a:hover {
+  color: #007acc;
+}
