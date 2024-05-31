@@ -13,6 +13,21 @@ const AddRecipe = ({ isModalOpen, closeModal, fetchRecipes }) => {
   const [imageUrls, setImageUrls] = useState([""]);
   const [servings, setServings] = useState("");
   const [difficulty, setDifficulty] = useState("");
+  const [preparationTime, setPreparationTime] = useState("");
+  const [categories, setCategories] = useState([]);
+
+  const categoryOptions = [
+    "Breakfast",
+    "Brunch",
+    "Lunch",
+    "Dinner",
+    "Dessert",
+    "Snack",
+    "Vegetarian",
+    "Vegan",
+    "Gluten-Free",
+    "Others",
+  ];
 
   const handleAddRecipe = async (e) => {
     e.preventDefault();
@@ -28,6 +43,8 @@ const AddRecipe = ({ isModalOpen, closeModal, fetchRecipes }) => {
           imageUrls,
           servings,
           difficulty,
+          preparationTime,
+          categories,
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -70,6 +87,16 @@ const AddRecipe = ({ isModalOpen, closeModal, fetchRecipes }) => {
 
   const addImage = () => {
     setImageUrls([...imageUrls, ""]);
+  };
+
+  const handleCategoryChange = (category) => {
+    setCategories((prevCategories) => {
+      if (prevCategories.includes(category)) {
+        return prevCategories.filter((cat) => cat !== category);
+      } else {
+        return [...prevCategories, category];
+      }
+    });
   };
 
   return (
@@ -162,6 +189,26 @@ const AddRecipe = ({ isModalOpen, closeModal, fetchRecipes }) => {
           onChange={(e) => setDifficulty(e.target.value)}
           required
         />
+        <input
+          type="number"
+          placeholder="Preparation Time (minutes)"
+          value={preparationTime}
+          onChange={(e) => setPreparationTime(e.target.value)}
+          required
+        />
+        <h3>Categories</h3>
+        <div className="categories">
+          {categoryOptions.map((category) => (
+            <label key={category}>
+              <input
+                type="checkbox"
+                value={category}
+                onChange={() => handleCategoryChange(category)}
+              />
+              {category}
+            </label>
+          ))}
+        </div>
         <button type="submit">Add Recipe</button>
         <button type="button" onClick={closeModal}>
           Cancel

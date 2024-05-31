@@ -1,34 +1,43 @@
 /* src/components/addRecipe/AddRecipe.css */
 .modal {
-  background: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  background-color: white;
   padding: 20px;
   border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
   max-width: 500px;
-  margin: 100px auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.modal h2 {
+.overlay {
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+h2 {
   margin-top: 0;
 }
 
-.modal form {
+form {
   display: flex;
   flex-direction: column;
 }
 
-.modal form input,
-.modal form textarea {
-  width: 100%;
-  padding: 10px;
+form input,
+form textarea {
   margin-bottom: 10px;
-  border: 1px solid #ccc;
+  padding: 10px;
+  border: 1px solid #ddd;
   border-radius: 4px;
+  width: 100%;
 }
 
-.modal form button {
-  padding: 10px 20px;
-  font-size: 1em;
+form button {
+  padding: 10px;
   color: white;
   background-color: #09f;
   border: none;
@@ -38,15 +47,30 @@
   margin-top: 10px;
 }
 
-.modal form button[type="button"] {
+form button[type="button"] {
   background-color: #ccc;
   color: #333;
 }
 
-.modal form button:hover {
+form button:hover {
   background-color: #007acc;
 }
 
-.modal form button[type="button"]:hover {
+form button[type="button"]:hover {
   background-color: #aaa;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.categories label {
+  display: flex;
+  align-items: center;
+}
+
+.categories input {
+  margin-right: 5px;
 }

@@ -13,6 +13,21 @@ const EditRecipe = () => {
   const [imageUrls, setImageUrls] = useState([""]);
   const [servings, setServings] = useState("");
   const [difficulty, setDifficulty] = useState("");
+  const [preparationTime, setPreparationTime] = useState("");
+  const [categories, setCategories] = useState([]);
+
+  const categoryOptions = [
+    "Breakfast",
+    "Brunch",
+    "Lunch",
+    "Dinner",
+    "Dessert",
+    "Snack",
+    "Vegetarian",
+    "Vegan",
+    "Gluten-Free",
+    "Others",
+  ];
 
   useEffect(() => {
     const fetchRecipe = async () => {
@@ -26,6 +41,8 @@ const EditRecipe = () => {
         setImageUrls(recipe.imageUrls);
         setServings(recipe.servings);
         setDifficulty(recipe.difficulty);
+        setPreparationTime(recipe.preparationTime);
+        setCategories(recipe.categories);
       } catch (error) {
         console.error("Error fetching recipe:", error.response.data.error);
       }
@@ -48,6 +65,8 @@ const EditRecipe = () => {
           imageUrls,
           servings,
           difficulty,
+          preparationTime,
+          categories,
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -86,6 +105,16 @@ const EditRecipe = () => {
 
   const addImage = () => {
     setImageUrls([...imageUrls, ""]);
+  };
+
+  const handleCategoryChange = (category) => {
+    setCategories((prevCategories) => {
+      if (prevCategories.includes(category)) {
+        return prevCategories.filter((cat) => cat !== category);
+      } else {
+        return [...prevCategories, category];
+      }
+    });
   };
 
   return (
@@ -172,6 +201,27 @@ const EditRecipe = () => {
           onChange={(e) => setDifficulty(e.target.value)}
           required
         />
+        <input
+          type="number"
+          placeholder="Preparation Time (minutes)"
+          value={preparationTime}
+          onChange={(e) => setPreparationTime(e.target.value)}
+          required
+        />
+        <h3>Categories</h3>
+        <div className="categories">
+          {categoryOptions.map((category) => (
+            <label key={category}>
+              <input
+                type="checkbox"
+                value={category}
+                checked={categories.includes(category)}
+                onChange={() => handleCategoryChange(category)}
+              />
+              {category}
+            </label>
+          ))}
+        </div>
         <button type="submit">Update Recipe</button>
         <button type="button" onClick={() => navigate(`/recipes/${id}`)}>
           Cancel

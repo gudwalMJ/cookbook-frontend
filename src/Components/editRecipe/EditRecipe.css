@@ -52,3 +52,18 @@
 .edit-recipe form button[type="button"]:hover {
   background-color: #aaa;
 }
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.categories label {
+  display: flex;
+  align-items: center;
+}
+
+.categories input {
+  margin-right: 5px;
+}
