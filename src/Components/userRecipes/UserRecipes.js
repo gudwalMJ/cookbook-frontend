@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./UserRecipes.css";
 
 const UserRecipes = ({ userId }) => {
   const [recipes, setRecipes] = useState([]);
+  const navigate = useNavigate();
 
   const fetchUserRecipes = useCallback(async () => {
     try {
@@ -29,8 +30,14 @@ const UserRecipes = ({ userId }) => {
       <h2>Your Recipes</h2>
       <ul>
         {recipes.map((recipe) => (
-          <li key={recipe._id}>
+          <li key={recipe._id} className="recipe-item">
             <Link to={`/recipes/${recipe._id}`}>{recipe.title}</Link>
+            <button
+              onClick={() => navigate(`/edit-recipe/${recipe._id}`)}
+              className="edit-button"
+            >
+              Edit
+            </button>
           </li>
         ))}
       </ul>

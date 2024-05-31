@@ -13,16 +13,33 @@
   padding: 0;
 }
 
-.user-recipes li {
+.recipe-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 10px;
 }
 
-.user-recipes li a {
+.recipe-item a {
   text-decoration: none;
   color: #09f;
   transition: color 0.3s;
 }
 
-.user-recipes li a:hover {
+.recipe-item a:hover {
   color: #007acc;
+}
+
+.edit-button {
+  background-color: #09f;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+  background-color: #007acc;
 }

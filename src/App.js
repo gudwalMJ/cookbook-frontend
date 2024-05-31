@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./components/homePage/HomePage";
 import RecipeDetail from "./components/recipeDetail/RecipeDetail.js";
 import Navbar from "./components/navbar/Navbar.js";
+import EditRecipe from "./components/editRecipe/EditRecipe";
 // User Components
 import SignUp from "./components/user/signUp/signUp.js";
 import Login from "./components/user/login/Login";
@@ -29,6 +30,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/edit-recipe/:id" element={<EditRecipe />} />
           </Routes>
         </div>
       </div>

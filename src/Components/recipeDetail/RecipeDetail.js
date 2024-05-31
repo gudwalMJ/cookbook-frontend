@@ -1,6 +1,5 @@
-// src/components/recipeDetail/RecipeDetail.js
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import API from "../../api/api";
 // import components
 import Slideshow from "../slideshow/Slideshow";
@@ -57,10 +56,34 @@ const RecipeDetail = () => {
       <Slideshow images={recipe.imageUrls} />
       <p>{recipe.description}</p>
       {user && user._id === recipe.creator && (
-        <Link to={`/edit-recipe/${recipe._id}`} className="edit-button">
+        <button
+          onClick={() => navigate(`/edit-recipe/${recipe._id}`)}
+          className="edit-button"
+        >
           Edit Recipe
-        </Link>
+        </button>
       )}
+      <h3>Details</h3>
+      <ul>
+        <li>
+          <strong>Servings:</strong> {recipe.servings}
+        </li>
+        <li>
+          <strong>Difficulty:</strong> {recipe.difficulty}
+        </li>
+        <li>
+          <strong>Likes:</strong> {recipe.likes}
+        </li>
+        <li>
+          <strong>Star Rating:</strong> {recipe.starRating}
+        </li>
+        <li>
+          <strong>Preparation Time:</strong> {recipe.preparationTime} minutes
+        </li>
+        <li>
+          <strong>Categories:</strong> {recipe.categories.join(", ")}
+        </li>
+      </ul>
       <h3>Ingredients</h3>
       <ul>
         {recipe.ingredients.map((ingredient, index) => (
