@@ -13,6 +13,8 @@ const RecipeDetail = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [user, setUser] = useState(null);
+  const [userRating, setUserRating] = useState(0);
+  const [userLiked, setUserLiked] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -49,6 +51,48 @@ const RecipeDetail = () => {
     fetchUser();
   }, []);
 
+  const handleRating = async (rating) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await API.post(
+        `/recipes/${id}/rate`,
+        { rating },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setRecipe((prevRecipe) => ({
+        ...prevRecipe,
+        averageRating: parseFloat(response.data.averageRating),
+      }));
+      setUserRating(rating);
+    } catch (error) {
+      console.error(
+        "Error submitting rating:",
+        error.response?.data?.error || error.message
+      );
+    }
+  };
+
+  const handleLike = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await API.put(
+        `/recipes/${id}/like`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setRecipe((prevRecipe) => ({
+        ...prevRecipe,
+        likes: response.data.likes,
+      }));
+      setUserLiked(true);
+    } catch (error) {
+      console.error(
+        "Error liking recipe:",
+        error.response?.data?.error || error.message
+      );
+    }
+  };
+
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
   if (!recipe) return <p>No recipe found.</p>;
@@ -79,9 +123,22 @@ const RecipeDetail = () => {
         </li>
         <li>
           <strong>Likes:</strong> {recipe.likes}
+          <button onClick={handleLike} disabled={userLiked}>
+            {userLiked ? "Liked" : "Like"}
+          </button>
         </li>
         <li>
-          <strong>Star Rating:</strong> {recipe.starRating}
+          <strong>Star Rating:</strong>{" "}
+          {recipe.averageRating ? recipe.averageRating.toFixed(2) : 0}
+          {[1, 2, 3, 4, 5].map((star) => (
+            <button
+              key={star}
+              onClick={() => handleRating(star)}
+              disabled={userRating === star}
+            >
+              {star} Star
+            </button>
+          ))}
         </li>
         <li>
           <strong>Preparation Time:</strong> {recipe.preparationTime} minutes
