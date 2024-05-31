@@ -18,10 +18,12 @@ const RecipeDetail = () => {
     setIsLoading(true);
     API.get(`/recipes/${id}`)
       .then((response) => {
+        console.log("Recipe Data:", response.data); // Debugging
         setRecipe(response.data);
         setIsLoading(false);
       })
       .catch((err) => {
+        console.error("Failed to fetch recipe details:", err); // Debugging
         setError("Failed to fetch recipe details");
         setIsLoading(false);
       });
@@ -31,12 +33,16 @@ const RecipeDetail = () => {
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await API.get("/api/users/me", {
+        const response = await API.get("/users/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log("User Data:", response.data); // Debugging
         setUser(response.data);
       } catch (error) {
-        console.error("Error fetching user:", error.response.data.error);
+        console.error(
+          "Error fetching user:",
+          error.response?.data?.error || error.message
+        ); // Debugging
       }
     };
 
@@ -55,7 +61,7 @@ const RecipeDetail = () => {
       <h1>{recipe.title}</h1>
       <Slideshow images={recipe.imageUrls} />
       <p>{recipe.description}</p>
-      {user && user._id === recipe.creator && (
+      {user && user._id === recipe.creator._id && (
         <button
           onClick={() => navigate(`/edit-recipe/${recipe._id}`)}
           className="edit-button"
