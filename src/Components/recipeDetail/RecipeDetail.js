@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../../api/api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHeart,
+  faStar as solidStar,
+} from "@fortawesome/free-solid-svg-icons";
+import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 // import components
 import Slideshow from "../slideshow/Slideshow";
 // import styling
@@ -149,7 +155,10 @@ const RecipeDetail = () => {
         <li>
           <strong>Likes:</strong> {recipe.likes}
           <button onClick={handleLike} disabled={userLiked}>
-            {userLiked ? "Liked" : "Like"}
+            <FontAwesomeIcon
+              icon={faHeart}
+              color={userLiked ? "red" : "gray"}
+            />
           </button>
         </li>
         <li>
@@ -159,9 +168,12 @@ const RecipeDetail = () => {
             <button
               key={star}
               onClick={() => handleRating(star)}
-              disabled={userRating === star}
+              disabled={userRating >= star}
             >
-              {star} Star
+              <FontAwesomeIcon
+                icon={userRating >= star ? solidStar : regularStar}
+                color={userRating >= star ? "gold" : "gray"}
+              />
             </button>
           ))}
         </li>

@@ -1,10 +1,49 @@
-/* src/components/slideshow/Slideshow.css */
 .slide-image {
   width: 100%;
-  height: auto;
+  height: 450px; /* Set a fixed height */
+  object-fit: contain; /* This will ensure the entire image is visible within the container */
   border-radius: 8px;
 }
 
 .slick-slider {
   margin-bottom: 20px;
+  position: relative;
+}
+
+.custom-dots-container {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: -40px; /* Increase space above the dots */
+  width: 100%;
+  text-align: center; /* Center align text to center dots and arrows */
+}
+
+.custom-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the dots */
+}
+
+.custom-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: gray;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.custom-dot.slick-active {
+  background-color: black;
+}
+
+.custom-arrow {
+  font-size: 20px;
+  color: #333;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin: 0 5px; /* Bring the arrows closer to the dots */
 }
