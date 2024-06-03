@@ -10,10 +10,24 @@ import "./Profile.css";
 
 Modal.setAppElement("#root"); // For accessibility
 
+const profileImages = [
+  "/images/profiles/profile_1.png",
+  "/images/profiles/profile_2.png",
+  "/images/profiles/profile_3.png",
+  "/images/profiles/profile_4.png",
+  "/images/profiles/profile_5.png",
+  "/images/profiles/profile_6.png",
+  "/images/profiles/profile_7.png",
+  "/images/profiles/profile_8.png",
+  "/images/profiles/profile_9.png",
+  "/images/profiles/profile_10.png",
+];
+
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [profileImage, setProfileImage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddRecipeModalOpen, setIsAddRecipeModalOpen] = useState(false);
 
@@ -25,6 +39,7 @@ const Profile = () => {
       });
       setUser(response.data);
       setUsername(response.data.username);
+      setProfileImage(response.data.profileImage);
     } catch (error) {
       console.error("Error fetching user:", error.response.data.error);
     }
@@ -40,7 +55,7 @@ const Profile = () => {
       const token = localStorage.getItem("token");
       await axios.put(
         "/api/users/me",
-        { username, password },
+        { username, password, profileImage },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert("Profile updated successfully");
@@ -56,6 +71,7 @@ const Profile = () => {
   return (
     <div className="profile-page">
       <h1>Profile</h1>
+      <img src={user.profileImage} alt="Profile" className="profile-image" />
       <p>Username: {user.username}</p>
       <button onClick={() => setIsModalOpen(true)}>Update Profile</button>
       <button onClick={() => setIsAddRecipeModalOpen(true)}>Add Recipe</button>
@@ -82,6 +98,19 @@ const Profile = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <div className="profile-images">
+            {profileImages.map((img, index) => (
+              <img
+                key={index}
+                src={img}
+                alt={`Profile ${index}`}
+                className={`profile-image-option ${
+                  profileImage === img ? "selected" : ""
+                }`}
+                onClick={() => setProfileImage(img)}
+              />
+            ))}
+          </div>
           <button type="submit">Update Profile</button>
           <button type="button" onClick={() => setIsModalOpen(false)}>
             Cancel
