@@ -97,6 +97,9 @@ const RecipeDetail = () => {
   if (error) return <p>{error}</p>;
   if (!recipe) return <p>No recipe found.</p>;
 
+  console.log("Current User:", user); // Debugging
+  console.log("Recipe Creator:", recipe.creator); // Debugging
+
   return (
     <div className="recipe-detail">
       <button className="back-button" onClick={() => navigate("/")}>
@@ -105,13 +108,35 @@ const RecipeDetail = () => {
       <h1>{recipe.title}</h1>
       <Slideshow images={recipe.imageUrls} />
       <p>{recipe.description}</p>
-      {user && user._id === recipe.creator._id && (
-        <button
-          onClick={() => navigate(`/edit-recipe/${recipe._id}`)}
-          className="edit-button"
-        >
-          Edit Recipe
-        </button>
+      {user && (user._id === recipe.creator._id || user.isAdmin) && (
+        <div>
+          <button
+            onClick={() => navigate(`/edit-recipe/${recipe._id}`)}
+            className="edit-button"
+          >
+            Edit Recipe
+          </button>
+          <button
+            onClick={async () => {
+              try {
+                const token = localStorage.getItem("token");
+                await API.delete(`/recipes/${recipe._id}`, {
+                  headers: { Authorization: `Bearer ${token}` },
+                });
+                alert("Recipe deleted successfully");
+                navigate("/");
+              } catch (error) {
+                console.error(
+                  "Error deleting recipe:",
+                  error.response?.data?.error || error.message
+                );
+              }
+            }}
+            className="delete-button"
+          >
+            Delete Recipe
+          </button>
+        </div>
       )}
       <h3>Details</h3>
       <ul>
