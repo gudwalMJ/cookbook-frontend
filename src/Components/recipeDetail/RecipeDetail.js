@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../../api/api";
+// import icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
@@ -9,6 +10,8 @@ import {
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 // import components
 import Slideshow from "../slideshow/Slideshow";
+import CommentList from "../comments/CommentList";
+import CommentForm from "../comments/CommentForm";
 // import styling
 import "./RecipeDetail.css";
 
@@ -21,6 +24,7 @@ const RecipeDetail = () => {
   const [user, setUser] = useState(null);
   const [userRating, setUserRating] = useState(0);
   const [userLiked, setUserLiked] = useState(false);
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -56,6 +60,22 @@ const RecipeDetail = () => {
 
     fetchUser();
   }, []);
+
+  const fetchComments = useCallback(async () => {
+    try {
+      const response = await API.get(`/api/comments/recipe/${id}`);
+      setComments(response.data);
+    } catch (error) {
+      console.error(
+        "Error fetching comments:",
+        error.response?.data?.error || error.message
+      );
+    }
+  }, [id]);
+
+  useEffect(() => {
+    fetchComments();
+  }, [fetchComments]);
 
   const handleRating = async (rating) => {
     try {
@@ -168,7 +188,7 @@ const RecipeDetail = () => {
             <button
               key={star}
               onClick={() => handleRating(star)}
-              disabled={userRating >= star}
+              disabled={userRating === star}
             >
               <FontAwesomeIcon
                 icon={userRating >= star ? solidStar : regularStar}
@@ -198,6 +218,9 @@ const RecipeDetail = () => {
           <li key={index}>{step}</li>
         ))}
       </ol>
+      <h3>Comments</h3>
+      <CommentForm recipeId={id} fetchComments={fetchComments} />
+      <CommentList recipeId={id} comments={comments} />
     </div>
   );
 };
