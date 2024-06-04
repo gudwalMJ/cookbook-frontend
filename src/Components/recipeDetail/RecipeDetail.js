@@ -220,7 +220,11 @@ const RecipeDetail = () => {
       </ol>
       <h3>Comments</h3>
       <CommentForm recipeId={id} fetchComments={fetchComments} />
-      <CommentList recipeId={id} comments={comments} />
+      <CommentList
+        recipeId={id}
+        comments={comments}
+        fetchComments={fetchComments}
+      />
     </div>
   );
 };

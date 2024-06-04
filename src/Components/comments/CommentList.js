@@ -28,6 +28,7 @@ const CommentList = ({ recipeId, fetchComments }) => {
           key={comment._id}
           comment={comment}
           fetchComments={fetchComments}
+          setComments={setComments}
         />
       ))}
     </div>

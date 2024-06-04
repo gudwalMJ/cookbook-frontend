@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Comment.css";
 
-const Comment = ({ comment, fetchComments }) => {
+const Comment = ({ comment, fetchComments, setComments }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState(comment.text);
 
@@ -31,7 +31,9 @@ const Comment = ({ comment, fetchComments }) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("Comment deleted successfully");
-      fetchComments();
+      setComments((prevComments) =>
+        prevComments.filter((c) => c._id !== comment._id)
+      );
     } catch (error) {
       console.error(
         "Error deleting comment:",
