@@ -63,7 +63,8 @@ const RecipeDetail = () => {
 
   const fetchComments = useCallback(async () => {
     try {
-      const response = await API.get(`/api/comments/recipe/${id}`);
+      const response = await API.get(`/comments/recipe/${id}`);
+      console.log("Comments Data:", response.data); // Debugging
       setComments(response.data);
     } catch (error) {
       console.error(
@@ -220,11 +221,7 @@ const RecipeDetail = () => {
       </ol>
       <h3>Comments</h3>
       <CommentForm recipeId={id} fetchComments={fetchComments} />
-      <CommentList
-        recipeId={id}
-        comments={comments}
-        fetchComments={fetchComments}
-      />
+      <CommentList comments={comments} fetchComments={fetchComments} />
     </div>
   );
 };

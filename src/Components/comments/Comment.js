@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Comment.css";
 
-const Comment = ({ comment, fetchComments, setComments }) => {
+const Comment = ({ comment, fetchComments }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState(comment.text);
 
@@ -15,7 +15,7 @@ const Comment = ({ comment, fetchComments, setComments }) => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setIsEditing(false);
-      fetchComments();
+      fetchComments(); // Fetch comments to refresh the list after editing a comment
     } catch (error) {
       console.error(
         "Error updating comment:",
@@ -31,9 +31,7 @@ const Comment = ({ comment, fetchComments, setComments }) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       alert("Comment deleted successfully");
-      setComments((prevComments) =>
-        prevComments.filter((c) => c._id !== comment._id)
-      );
+      fetchComments(); // Fetch comments to refresh the list after deleting a comment
     } catch (error) {
       console.error(
         "Error deleting comment:",

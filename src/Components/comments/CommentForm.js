@@ -14,7 +14,7 @@ const CommentForm = ({ recipeId, fetchComments }) => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setText("");
-      fetchComments();
+      fetchComments(); // Fetch comments to refresh the list after posting a new comment
     } catch (error) {
       console.error(
         "Error adding comment:",
