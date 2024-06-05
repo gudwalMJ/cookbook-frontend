@@ -6,7 +6,7 @@ const CommentList = ({ comments, fetchComments }) => {
     <div className="comment-list">
       {comments.map((comment) => (
         <Comment
-          key={comment._id}
+          key={comment._id} // Ensure each top-level comment has a unique key
           comment={comment}
           fetchComments={fetchComments}
         />

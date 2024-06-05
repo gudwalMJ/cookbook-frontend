@@ -5,7 +5,6 @@ import "./Comment.css";
 const Comment = ({ comment, fetchComments }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState(comment.text);
-  const [replyText, setReplyText] = useState("");
   const [likes, setLikes] = useState(comment.likes ? comment.likes.length : 0);
   const [isLiked, setIsLiked] = useState(
     comment.likes
@@ -41,24 +40,6 @@ const Comment = ({ comment, fetchComments }) => {
     } catch (error) {
       console.error(
         "Error deleting comment:",
-        error.response?.data?.error || error.message
-      );
-    }
-  };
-
-  const handleReply = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      await API.post(
-        `/comments/${comment._id}/reply`,
-        { text: replyText },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setReplyText("");
-      fetchComments();
-    } catch (error) {
-      console.error(
-        "Error replying to comment:",
         error.response?.data?.error || error.message
       );
     }
@@ -102,25 +83,6 @@ const Comment = ({ comment, fetchComments }) => {
           <button onClick={handleLike}>
             {isLiked ? "Unlike" : "Like"} ({likes})
           </button>
-          <div className="reply-section">
-            <textarea
-              value={replyText}
-              onChange={(e) => setReplyText(e.target.value)}
-              placeholder="Reply to this comment"
-            ></textarea>
-            <button onClick={handleReply}>Reply</button>
-          </div>
-          {comment.replies && comment.replies.length > 0 && (
-            <div className="replies">
-              {comment.replies.map((reply) => (
-                <Comment
-                  key={reply._id}
-                  comment={reply}
-                  fetchComments={fetchComments}
-                />
-              ))}
-            </div>
-          )}
         </div>
       )}
     </div>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import API from "../../api/api";
 
 const CommentForm = ({ recipeId, fetchComments }) => {
@@ -15,7 +14,7 @@ const CommentForm = ({ recipeId, fetchComments }) => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setText("");
-      fetchComments(); // Fetch comments to refresh the list after posting a new comment
+      fetchComments();
     } catch (error) {
       console.error(
         "Error adding comment:",
