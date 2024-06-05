@@ -1,18 +1,15 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../../api/api";
-// import icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
   faStar as solidStar,
 } from "@fortawesome/free-solid-svg-icons";
 import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
-// import components
 import Slideshow from "../slideshow/Slideshow";
 import CommentList from "../comments/CommentList";
 import CommentForm from "../comments/CommentForm";
-// import styling
 import "./RecipeDetail.css";
 
 const RecipeDetail = () => {
@@ -30,12 +27,10 @@ const RecipeDetail = () => {
     setIsLoading(true);
     API.get(`/recipes/${id}`)
       .then((response) => {
-        console.log("Recipe Data:", response.data); // Debugging
         setRecipe(response.data);
         setIsLoading(false);
       })
       .catch((err) => {
-        console.error("Failed to fetch recipe details:", err); // Debugging
         setError("Failed to fetch recipe details");
         setIsLoading(false);
       });
@@ -48,13 +43,12 @@ const RecipeDetail = () => {
         const response = await API.get("/users/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        console.log("User Data:", response.data); // Debugging
         setUser(response.data);
       } catch (error) {
         console.error(
           "Error fetching user:",
           error.response?.data?.error || error.message
-        ); // Debugging
+        );
       }
     };
 
@@ -64,7 +58,6 @@ const RecipeDetail = () => {
   const fetchComments = useCallback(async () => {
     try {
       const response = await API.get(`/comments/recipe/${id}`);
-      console.log("Comments Data:", response.data); // Debugging
       setComments(response.data);
     } catch (error) {
       console.error(
@@ -123,9 +116,6 @@ const RecipeDetail = () => {
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>{error}</p>;
   if (!recipe) return <p>No recipe found.</p>;
-
-  console.log("Current User:", user); // Debugging
-  console.log("Recipe Creator:", recipe.creator); // Debugging
 
   return (
     <div className="recipe-detail">

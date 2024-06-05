@@ -2,7 +2,6 @@ import React from "react";
 import Comment from "./Comment";
 
 const CommentList = ({ comments, fetchComments }) => {
-  console.log("Rendering comments:", comments); // Debugging
   return (
     <div className="comment-list">
       {comments.map((comment) => (

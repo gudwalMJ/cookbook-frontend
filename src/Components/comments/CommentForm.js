@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import API from "../../api/api";
 
 const CommentForm = ({ recipeId, fetchComments }) => {
   const [text, setText] = useState("");
@@ -8,8 +9,8 @@ const CommentForm = ({ recipeId, fetchComments }) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      await axios.post(
-        "/api/comments",
+      await API.post(
+        "/comments",
         { text, recipeId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
