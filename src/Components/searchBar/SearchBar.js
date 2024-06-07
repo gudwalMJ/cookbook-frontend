@@ -1,4 +1,3 @@
-// src/components/searchBar/SearchBar.js
 import React, { useState, useMemo, useEffect } from "react";
 import debounce from "lodash.debounce";
 import API from "../../api/api";
@@ -64,16 +63,16 @@ const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
 
   return (
     <div className="search-bar-container">
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search for recipes..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
-      <div className="filters">
+      <input
+        type="text"
+        className="search-bar-input"
+        placeholder="Search for recipes..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      <div className="filter-container">
         <select
+          className="search-bar-filter"
           value={difficulty}
           onChange={(e) => setDifficulty(e.target.value)}
         >
@@ -82,7 +81,11 @@ const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
           <option value="Medium">Medium</option>
           <option value="Hard">Hard</option>
         </select>
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+        <select
+          className="search-bar-filter"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
           <option value="">All Categories</option>
           <option value="Breakfast">Breakfast</option>
           <option value="Brunch">Brunch</option>
