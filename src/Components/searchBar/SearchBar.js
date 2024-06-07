@@ -1,3 +1,4 @@
+// src/components/searchBar/SearchBar.js
 import React, { useState, useMemo, useEffect } from "react";
 import debounce from "lodash.debounce";
 import API from "../../api/api";
@@ -6,11 +7,13 @@ import "./SearchBar.css";
 
 const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [difficulty, setDifficulty] = useState("");
+  const [category, setCategory] = useState("");
 
   const debouncedSearch = useMemo(
     () =>
-      debounce((value) => {
-        if (value.trim() === "") {
+      debounce(() => {
+        if (searchTerm.trim() === "" && difficulty === "" && category === "") {
           setRecipes([]);
           setIsLoading(false);
           setNoResults(false);
@@ -21,7 +24,13 @@ const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
         setError("");
         setNoResults(false);
 
-        API.get(`/recipes/search?query=${value}`)
+        API.get(`/recipes/search`, {
+          params: {
+            query: searchTerm,
+            difficulty,
+            category,
+          },
+        })
           .then((response) => {
             setIsLoading(false);
             setRecipes(response.data);
@@ -35,26 +44,58 @@ const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
             setIsLoading(false);
           });
       }, 300),
-    [setRecipes, setIsLoading, setNoResults, setError]
+    [
+      searchTerm,
+      difficulty,
+      category,
+      setRecipes,
+      setIsLoading,
+      setNoResults,
+      setError,
+    ]
   );
 
   useEffect(() => {
+    debouncedSearch();
     return () => {
       debouncedSearch.cancel();
     };
-  }, [debouncedSearch]);
+  }, [searchTerm, difficulty, category, debouncedSearch]);
 
   return (
-    <div className="search-bar">
-      <input
-        type="text"
-        placeholder="Search for recipes..."
-        value={searchTerm}
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-          debouncedSearch(e.target.value);
-        }}
-      />
+    <div className="search-bar-container">
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search for recipes..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      <div className="filters">
+        <select
+          value={difficulty}
+          onChange={(e) => setDifficulty(e.target.value)}
+        >
+          <option value="">All Difficulties</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
+        </select>
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="">All Categories</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Brunch">Brunch</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Dessert">Dessert</option>
+          <option value="Snack">Snack</option>
+          <option value="Vegetarian">Vegetarian</option>
+          <option value="Vegan">Vegan</option>
+          <option value="Gluten-Free">Gluten-Free</option>
+          <option value="Others">Others</option>
+        </select>
+      </div>
     </div>
   );
 };
