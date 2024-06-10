@@ -7,13 +7,18 @@ import {
   faStar as solidStar,
   faBookmark as solidBookmark,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faStar as regularStar,
-  faBookmark as regularBookmark,
-} from "@fortawesome/free-regular-svg-icons";
+import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
 import Slideshow from "../slideshow/Slideshow";
 import CommentList from "../comments/CommentList";
 import CommentForm from "../comments/CommentForm";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  EmailShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  EmailIcon,
+} from "react-share";
 import "./RecipeDetail.css";
 
 const RecipeDetail = () => {
@@ -148,6 +153,8 @@ const RecipeDetail = () => {
   if (error) return <p>{error}</p>;
   if (!recipe) return <p>No recipe found.</p>;
 
+  const shareUrl = window.location.href;
+
   return (
     <div className="recipe-detail">
       <button className="back-button" onClick={() => navigate("/")}>
@@ -228,11 +235,24 @@ const RecipeDetail = () => {
         <li>
           <button className="favorite-button" onClick={handleFavorite}>
             <FontAwesomeIcon
-              icon={isFavorite ? solidBookmark : regularBookmark}
-              color={isFavorite ? "limegreen" : "gray"}
+              icon={solidBookmark}
+              color={isFavorite ? "gold" : "gray"}
             />
-            {isFavorite ? " Remove from Favorites" : " Add to Favorites"}
+            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
           </button>
+        </li>
+        <li>
+          <div className="share-buttons">
+            <FacebookShareButton url={shareUrl} quote={recipe.title}>
+              <FacebookIcon size={32} round />
+            </FacebookShareButton>
+            <TwitterShareButton url={shareUrl} title={recipe.title}>
+              <TwitterIcon size={32} round />
+            </TwitterShareButton>
+            <EmailShareButton url={shareUrl} subject={recipe.title}>
+              <EmailIcon size={32} round />
+            </EmailShareButton>
+          </div>
         </li>
       </ul>
       <h3>Ingredients</h3>

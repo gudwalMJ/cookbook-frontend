@@ -1,18 +1,23 @@
 import React, { useState, useMemo, useEffect } from "react";
 import debounce from "lodash.debounce";
 import API from "../../api/api";
-// Styling
 import "./SearchBar.css";
 
 const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
+  const [sortBy, setSortBy] = useState("");
 
   const debouncedSearch = useMemo(
     () =>
       debounce(() => {
-        if (searchTerm.trim() === "" && difficulty === "" && category === "") {
+        if (
+          searchTerm.trim() === "" &&
+          difficulty === "" &&
+          category === "" &&
+          sortBy === ""
+        ) {
           setRecipes([]);
           setIsLoading(false);
           setNoResults(false);
@@ -23,11 +28,12 @@ const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
         setError("");
         setNoResults(false);
 
-        API.get(`/recipes/search`, {
+        API.get(`/recipes`, {
           params: {
             query: searchTerm,
             difficulty,
             category,
+            sortBy,
           },
         })
           .then((response) => {
@@ -47,6 +53,7 @@ const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
       searchTerm,
       difficulty,
       category,
+      sortBy,
       setRecipes,
       setIsLoading,
       setNoResults,
@@ -59,22 +66,22 @@ const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
     return () => {
       debouncedSearch.cancel();
     };
-  }, [searchTerm, difficulty, category, debouncedSearch]);
+  }, [searchTerm, difficulty, category, sortBy, debouncedSearch]);
 
   return (
     <div className="search-bar-container">
-      <input
-        type="text"
-        className="search-bar-input"
-        placeholder="Search for recipes..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <div className="filter-container">
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search for recipes..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-bar-input"
+        />
         <select
-          className="search-bar-filter"
           value={difficulty}
           onChange={(e) => setDifficulty(e.target.value)}
+          className="search-bar-filter"
         >
           <option value="">All Difficulties</option>
           <option value="Easy">Easy</option>
@@ -82,9 +89,9 @@ const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
           <option value="Hard">Hard</option>
         </select>
         <select
-          className="search-bar-filter"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
+          className="search-bar-filter"
         >
           <option value="">All Categories</option>
           <option value="Breakfast">Breakfast</option>
@@ -97,6 +104,17 @@ const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
           <option value="Vegan">Vegan</option>
           <option value="Gluten-Free">Gluten-Free</option>
           <option value="Others">Others</option>
+        </select>
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+          className="search-bar-filter"
+        >
+          <option value="">Sort By</option>
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="mostPopular">Most Popular</option>
+          <option value="highestRated">Highest Rated</option>
         </select>
       </div>
     </div>
