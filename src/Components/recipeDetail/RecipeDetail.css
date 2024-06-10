@@ -92,3 +92,18 @@
   display: flex;
   gap: 10px;
 }
+
+.star-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.star-button .gold-star {
+  color: gold;
+}
+
+.star-button .gray-star {
+  color: gray;
+}

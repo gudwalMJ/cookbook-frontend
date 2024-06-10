@@ -7,7 +7,10 @@ import {
   faStar as solidStar,
   faBookmark as solidBookmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
+import {
+  faStar as regularStar,
+  faBookmark as regularBookmark,
+} from "@fortawesome/free-regular-svg-icons";
 import Slideshow from "../slideshow/Slideshow";
 import CommentList from "../comments/CommentList";
 import CommentForm from "../comments/CommentForm";
@@ -53,8 +56,16 @@ const RecipeDetail = () => {
         const response = await API.get("/users/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setUser(response.data);
-        setIsFavorite(response.data.favorites.includes(id));
+        const userData = response.data;
+        setUser(userData);
+        setIsFavorite(userData.favorites.some((fav) => fav._id === id));
+        const liked = userData.likedRecipes.some((liked) => liked._id === id);
+        setUserLiked(liked);
+        console.log("User liked state after fetch:", liked);
+        const rating =
+          userData.ratings &&
+          userData.ratings.find((rating) => rating.recipe === id);
+        if (rating) setUserRating(rating.rating);
       } catch (error) {
         console.error(
           "Error fetching user:",
@@ -94,7 +105,7 @@ const RecipeDetail = () => {
         ...prevRecipe,
         averageRating: parseFloat(response.data.averageRating),
       }));
-      setUserRating(rating);
+      setUserRating(rating); // Update the userRating state
     } catch (error) {
       console.error(
         "Error submitting rating:",
@@ -116,9 +127,32 @@ const RecipeDetail = () => {
         likes: response.data.likes,
       }));
       setUserLiked(true);
+      console.log("User liked the recipe:", true);
     } catch (error) {
       console.error(
         "Error liking recipe:",
+        error.response?.data?.error || error.message
+      );
+    }
+  };
+
+  const handleUnlike = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await API.put(
+        `/recipes/${id}/unlike`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setRecipe((prevRecipe) => ({
+        ...prevRecipe,
+        likes: response.data.likes,
+      }));
+      setUserLiked(false);
+      console.log("User unliked the recipe:", false);
+    } catch (error) {
+      console.error(
+        "Error unliking recipe:",
         error.response?.data?.error || error.message
       );
     }
@@ -203,12 +237,16 @@ const RecipeDetail = () => {
         </li>
         <li>
           <strong>Likes:</strong> {recipe.likes}
-          <button onClick={handleLike} disabled={userLiked}>
-            <FontAwesomeIcon
-              icon={faHeart}
-              color={userLiked ? "red" : "gray"}
-            />
-          </button>
+          {!userLiked && (
+            <button onClick={handleLike}>
+              <FontAwesomeIcon icon={faHeart} color="gray" />
+            </button>
+          )}
+          {userLiked && (
+            <button onClick={handleUnlike}>
+              <FontAwesomeIcon icon={faHeart} color="red" />
+            </button>
+          )}
         </li>
         <li>
           <strong>Star Rating:</strong>{" "}
@@ -217,15 +255,16 @@ const RecipeDetail = () => {
             <button
               key={star}
               onClick={() => handleRating(star)}
-              disabled={userRating === star}
+              className="star-button"
             >
               <FontAwesomeIcon
                 icon={userRating >= star ? solidStar : regularStar}
-                color={userRating >= star ? "gold" : "gray"}
+                className={userRating >= star ? "gold-star" : "gray-star"}
               />
             </button>
           ))}
         </li>
+
         <li>
           <strong>Preparation Time:</strong> {recipe.preparationTime} minutes
         </li>
@@ -235,7 +274,7 @@ const RecipeDetail = () => {
         <li>
           <button className="favorite-button" onClick={handleFavorite}>
             <FontAwesomeIcon
-              icon={solidBookmark}
+              icon={isFavorite ? solidBookmark : regularBookmark}
               color={isFavorite ? "gold" : "gray"}
             />
             {isFavorite ? "Remove from Favorites" : "Add to Favorites"}

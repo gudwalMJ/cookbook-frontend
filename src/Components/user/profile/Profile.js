@@ -5,10 +5,11 @@ import Modal from "react-modal";
 // Import Components
 import AddRecipe from "../../addRecipe/AddRecipe";
 import UserRecipes from "../../userRecipes/UserRecipes";
+import RecipeCard from "../../recipeCard/RecipeCard"; // Import RecipeCard to display favorite recipes
 // Styling
 import "./Profile.css";
 
-Modal.setAppElement("#root"); // For accessibility
+Modal.setAppElement("#root");
 
 const profileImages = [
   "/images/profiles/profile_1.png",
@@ -28,6 +29,7 @@ const Profile = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [profileImage, setProfileImage] = useState("");
+  const [bio, setBio] = useState(""); // Add bio state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddRecipeModalOpen, setIsAddRecipeModalOpen] = useState(false);
 
@@ -37,11 +39,19 @@ const Profile = () => {
       const response = await axios.get("/api/users/me", {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setUser(response.data);
-      setUsername(response.data.username);
-      setProfileImage(response.data.profileImage);
+      const userData = response.data;
+      setUser(userData);
+      setUsername(userData.username);
+      setProfileImage(userData.profileImage);
+      setBio(userData.bio); // Set bio from response
+      if (!userData.favorites) {
+        userData.favorites = []; // Initialize favorites if it's not present
+      }
     } catch (error) {
-      console.error("Error fetching user:", error.response.data.error);
+      console.error(
+        "Error fetching user:",
+        error.response?.data?.error || error.message
+      );
     }
   };
 
@@ -55,14 +65,17 @@ const Profile = () => {
       const token = localStorage.getItem("token");
       await axios.put(
         "/api/users/me",
-        { username, password, profileImage },
+        { username, password, profileImage, bio }, // Include bio in update
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert("Profile updated successfully");
       setIsModalOpen(false);
       fetchUser(); // Refresh the user data
     } catch (error) {
-      console.error("Error updating profile:", error.response.data.error);
+      console.error(
+        "Error updating profile:",
+        error.response?.data?.error || error.message
+      );
     }
   };
 
@@ -73,9 +86,9 @@ const Profile = () => {
       <h1>Profile</h1>
       <img src={user.profileImage} alt="Profile" className="profile-image" />
       <p>Username: {user.username}</p>
+      <p>Bio: {user.bio}</p> {/* Display bio */}
       <button onClick={() => setIsModalOpen(true)}>Update Profile</button>
       <button onClick={() => setIsAddRecipeModalOpen(true)}>Add Recipe</button>
-
       <Modal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
@@ -98,6 +111,12 @@ const Profile = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <textarea
+            placeholder="Bio"
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+            rows="4"
+          />
           <div className="profile-images">
             {profileImages.map((img, index) => (
               <img
@@ -117,14 +136,18 @@ const Profile = () => {
           </button>
         </form>
       </Modal>
-
       <AddRecipe
         isModalOpen={isAddRecipeModalOpen}
         closeModal={() => setIsAddRecipeModalOpen(false)}
         fetchRecipes={() => {}}
       />
-
       <UserRecipes userId={user._id} />
+      <h2>Favorite Recipes</h2>
+      <div className="favorites-list">
+        {user.favorites.map((recipe) => (
+          <RecipeCard key={recipe._id} recipe={recipe} />
+        ))}
+      </div>
     </div>
   );
 };
