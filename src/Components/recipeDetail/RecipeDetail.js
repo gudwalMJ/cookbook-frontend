@@ -1,16 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import API from "../../api/api";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHeart,
-  faStar as solidStar,
-  faBookmark as solidBookmark,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faStar as regularStar,
-  faBookmark as regularBookmark,
-} from "@fortawesome/free-regular-svg-icons";
 import Slideshow from "../slideshow/Slideshow";
 import CommentList from "../comments/CommentList";
 import CommentForm from "../comments/CommentForm";
@@ -22,6 +12,11 @@ import {
   TwitterIcon,
   EmailIcon,
 } from "react-share";
+import LikeButton from "./LikeButton";
+import RatingStars from "./RatingStars";
+import FavoriteButton from "./FavoriteButton";
+import useFetchUser from "./UserFetcher";
+import useFetchRecipe from "./RecipeFetcher";
 import "./RecipeDetail.css";
 
 const RecipeDetail = () => {
@@ -36,46 +31,8 @@ const RecipeDetail = () => {
   const [comments, setComments] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  useEffect(() => {
-    setIsLoading(true);
-    API.get(`/recipes/${id}`)
-      .then((response) => {
-        setRecipe(response.data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setError("Failed to fetch recipe details");
-        setIsLoading(false);
-      });
-  }, [id]);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await API.get("/users/me", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const userData = response.data;
-        setUser(userData);
-        setIsFavorite(userData.favorites.some((fav) => fav._id === id));
-        const liked = userData.likedRecipes.some((liked) => liked._id === id);
-        setUserLiked(liked);
-        console.log("User liked state after fetch:", liked);
-        const rating =
-          userData.ratings &&
-          userData.ratings.find((rating) => rating.recipe === id);
-        if (rating) setUserRating(rating.rating);
-      } catch (error) {
-        console.error(
-          "Error fetching user:",
-          error.response?.data?.error || error.message
-        );
-      }
-    };
-
-    fetchUser();
-  }, [id]);
+  useFetchRecipe(id, setRecipe, setIsLoading, setError);
+  useFetchUser(setUser, setIsFavorite, setUserLiked, setUserRating, id);
 
   const fetchComments = useCallback(async () => {
     try {
@@ -237,34 +194,17 @@ const RecipeDetail = () => {
         </li>
         <li>
           <strong>Likes:</strong> {recipe.likes}
-          {!userLiked && (
-            <button onClick={handleLike}>
-              <FontAwesomeIcon icon={faHeart} color="gray" />
-            </button>
-          )}
-          {userLiked && (
-            <button onClick={handleUnlike}>
-              <FontAwesomeIcon icon={faHeart} color="red" />
-            </button>
-          )}
+          <LikeButton
+            userLiked={userLiked}
+            handleLike={handleLike}
+            handleUnlike={handleUnlike}
+          />
         </li>
         <li>
           <strong>Star Rating:</strong>{" "}
           {recipe.averageRating ? recipe.averageRating.toFixed(2) : 0}
-          {[1, 2, 3, 4, 5].map((star) => (
-            <button
-              key={star}
-              onClick={() => handleRating(star)}
-              className="star-button"
-            >
-              <FontAwesomeIcon
-                icon={userRating >= star ? solidStar : regularStar}
-                className={userRating >= star ? "gold-star" : "gray-star"}
-              />
-            </button>
-          ))}
+          <RatingStars userRating={userRating} handleRating={handleRating} />
         </li>
-
         <li>
           <strong>Preparation Time:</strong> {recipe.preparationTime} minutes
         </li>
@@ -272,13 +212,10 @@ const RecipeDetail = () => {
           <strong>Categories:</strong> {recipe.categories.join(", ")}
         </li>
         <li>
-          <button className="favorite-button" onClick={handleFavorite}>
-            <FontAwesomeIcon
-              icon={isFavorite ? solidBookmark : regularBookmark}
-              color={isFavorite ? "gold" : "gray"}
-            />
-            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-          </button>
+          <FavoriteButton
+            isFavorite={isFavorite}
+            handleFavorite={handleFavorite}
+          />
         </li>
         <li>
           <div className="share-buttons">
