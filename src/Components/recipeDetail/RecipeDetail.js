@@ -5,8 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faHeart,
   faStar as solidStar,
+  faBookmark as solidBookmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { faStar as regularStar } from "@fortawesome/free-regular-svg-icons";
+import {
+  faStar as regularStar,
+  faBookmark as regularBookmark,
+} from "@fortawesome/free-regular-svg-icons";
 import Slideshow from "../slideshow/Slideshow";
 import CommentList from "../comments/CommentList";
 import CommentForm from "../comments/CommentForm";
@@ -22,6 +26,7 @@ const RecipeDetail = () => {
   const [userRating, setUserRating] = useState(0);
   const [userLiked, setUserLiked] = useState(false);
   const [comments, setComments] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
@@ -44,6 +49,7 @@ const RecipeDetail = () => {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(response.data);
+        setIsFavorite(response.data.favorites.includes(id));
       } catch (error) {
         console.error(
           "Error fetching user:",
@@ -53,7 +59,7 @@ const RecipeDetail = () => {
     };
 
     fetchUser();
-  }, []);
+  }, [id]);
 
   const fetchComments = useCallback(async () => {
     try {
@@ -108,6 +114,31 @@ const RecipeDetail = () => {
     } catch (error) {
       console.error(
         "Error liking recipe:",
+        error.response?.data?.error || error.message
+      );
+    }
+  };
+
+  const handleFavorite = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      let response;
+      if (isFavorite) {
+        response = await API.delete(`/favorites/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } else {
+        response = await API.post(
+          `/favorites/${id}`,
+          {},
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+      }
+      setIsFavorite(!isFavorite);
+      console.log("Favorite status updated:", response.data);
+    } catch (error) {
+      console.error(
+        "Error updating favorite status:",
         error.response?.data?.error || error.message
       );
     }
@@ -193,6 +224,15 @@ const RecipeDetail = () => {
         </li>
         <li>
           <strong>Categories:</strong> {recipe.categories.join(", ")}
+        </li>
+        <li>
+          <button className="favorite-button" onClick={handleFavorite}>
+            <FontAwesomeIcon
+              icon={isFavorite ? solidBookmark : regularBookmark}
+              color={isFavorite ? "limegreen" : "gray"}
+            />
+            {isFavorite ? " Remove from Favorites" : " Add to Favorites"}
+          </button>
         </li>
       </ul>
       <h3>Ingredients</h3>

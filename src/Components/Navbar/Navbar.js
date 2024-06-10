@@ -8,6 +8,7 @@ import {
   faSignInAlt,
   faUser,
   faSignOutAlt,
+  faBookmark, // Add the bookmark icon
 } from "@fortawesome/free-solid-svg-icons";
 import useLogout from "../user/logout/Logout";
 import "./navbar.css";
@@ -49,6 +50,13 @@ const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
               <Link to="/profile">
                 <FontAwesomeIcon icon={faUser} />
                 {isSidebarOpen && <span>Profile</span>}
+              </Link>
+            </li>
+            <li>
+              <Link to="/favorites">
+                <FontAwesomeIcon icon={faBookmark} />{" "}
+                {/* Use the bookmark icon */}
+                {isSidebarOpen && <span>Favorites</span>}
               </Link>
             </li>
             <li>

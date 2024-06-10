@@ -6,6 +6,7 @@ import RecipeDetail from "./components/recipeDetail/RecipeDetail.js";
 import Navbar from "./components/navbar/Navbar.js";
 import EditRecipe from "./components/editRecipe/EditRecipe";
 import SearchBar from "./components/searchBar/SearchBar";
+import Favorites from "./components/favorites/Favorites";
 // User Components
 import SignUp from "./components/user/signUp/SignUp.js";
 import Login from "./components/user/login/Login";
@@ -52,6 +53,8 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/edit-recipe/:id" element={<EditRecipe />} />
+            <Route path="/favorites" element={<Favorites />} />{" "}
+            {/* Add the Favorites route */}
           </Routes>
         </div>
       </div>
