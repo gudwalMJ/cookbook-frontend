@@ -1,9 +1,9 @@
-// src/components/homePage/HomePage.js
 import React from "react";
-// Components
 import FeaturedRecipes from "../recipeCard/FeaturedRecipes";
-import RecipeCard from "../recipeCard/RecipeCard";
-// Styling
+import MostRecentRecipes from "../recipeCard/MostRecentRecipes";
+import TrendingRecipes from "../recipeCard/TrendingRecipes";
+import HighestRatedRecipes from "../recipeCard/HighestRatedRecipes";
+import InfoBoard from "../infoBoard/InfoBoard";
 import "./HomePage.css";
 
 const HomePage = ({ recipes, isLoading, noResults, error }) => {
@@ -15,14 +15,20 @@ const HomePage = ({ recipes, isLoading, noResults, error }) => {
         <div className="results-message">{recipes.length} recipes found.</div>
       )}
       {error && <div className="error">Error: {error}</div>}
-      <div className="recipes-list">
-        {recipes.map((recipe) => (
-          <RecipeCard key={recipe._id} recipe={recipe} />
-        ))}
+
+      <FeaturedRecipes />
+
+      <div className="content-section">
+        <div className="most-recent">
+          <MostRecentRecipes />
+        </div>
+        <div className="info-board-trending">
+          <InfoBoard />
+          <TrendingRecipes />
+        </div>
       </div>
-      <div className="featured-recipes">
-        <FeaturedRecipes />
-      </div>
+
+      <HighestRatedRecipes />
     </div>
   );
 };

@@ -1,0 +1,44 @@
+/* src/components/recipeCard/HighestRatedRecipes.css */
+.highest-rated-recipes {
+  padding: 20px;
+  text-align: center;
+}
+
+.highest-rated-recipes h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+}
+
+.recipes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Space between recipe cards */
+}
+
+.recipes-grid .recipe-card {
+  flex: 1 1 calc(25% - 40px); /* Four items per row, accounting for gap */
+  box-sizing: border-box;
+  max-width: calc(25% - 40px); /* Adjust max-width to ensure proper spacing */
+}
+
+@media (max-width: 1200px) {
+  .recipes-grid .recipe-card {
+    flex: 1 1 calc(33.333% - 40px); /* Three items per row for smaller screens */
+    max-width: calc(33.333% - 40px);
+  }
+}
+
+@media (max-width: 900px) {
+  .recipes-grid .recipe-card {
+    flex: 1 1 calc(50% - 40px); /* Two items per row for even smaller screens */
+    max-width: calc(50% - 40px);
+  }
+}
+
+@media (max-width: 600px) {
+  .recipes-grid .recipe-card {
+    flex: 1 1 100%; /* One item per row for very small screens */
+    max-width: 100%;
+  }
+}

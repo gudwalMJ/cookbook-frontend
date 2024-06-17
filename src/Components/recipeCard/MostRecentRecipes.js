@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import API from "../../api/api";
 import RecipeCard from "../recipeCard/RecipeCard";
-import "./FeaturedRecipes.css"; // Import the CSS for styling
+import "./MostRecentRecipes.css";
 
-const FeaturedRecipes = () => {
+const MostRecentRecipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    API.get("/recipes/popular")
+    API.get("/recipes?sortBy=newest&limit=8")
       .then((response) => {
-        setRecipes(response.data.slice(0, 10)); // Only take top 10 recipes
+        setRecipes(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching popular recipes:", error);
-        setError("Failed to fetch popular recipes");
+        console.error("Error fetching recent recipes:", error);
+        setError("Failed to fetch recent recipes");
       });
   }, []);
 
@@ -23,9 +23,9 @@ const FeaturedRecipes = () => {
   }
 
   return (
-    <div className="featured-recipes-container">
-      <h2 className="section-title">Popular Right Now</h2>
-      <div className="featured-recipes">
+    <div className="most-recent-recipes">
+      <h2>Most Recent</h2>
+      <div className="recipes-grid">
         {recipes.map((recipe) => (
           <RecipeCard key={recipe._id} recipe={recipe} />
         ))}
@@ -34,4 +34,4 @@ const FeaturedRecipes = () => {
   );
 };
 
-export default FeaturedRecipes;
+export default MostRecentRecipes;

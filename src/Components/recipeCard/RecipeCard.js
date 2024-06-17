@@ -3,7 +3,19 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./RecipeCard.css";
 
-const RecipeCard = ({ recipe }) => {
+const StarRating = ({ rating }) => {
+  const stars = [];
+  for (let i = 1; i <= 5; i++) {
+    stars.push(
+      <span key={i} className={`star ${i <= rating ? "filled" : ""}`}>
+        &#9733;
+      </span>
+    );
+  }
+  return <div className="star-rating">{stars}</div>;
+};
+
+const RecipeCard = ({ recipe, showRating }) => {
   const imageUrl =
     recipe.imageUrls && recipe.imageUrls.length > 0
       ? recipe.imageUrls[0]
@@ -14,10 +26,14 @@ const RecipeCard = ({ recipe }) => {
       <img src={imageUrl} alt={recipe.title} className="recipe-card-image" />
       <div className="recipe-info">
         <h3>{recipe.title}</h3>
-        <p>{recipe.description}</p>
-        <Link to={`/recipes/${recipe._id}`} className="view-recipe-link">
-          View Recipe
-        </Link>
+        {showRating && recipe.averageRating && (
+          <div className="recipe-rating-container">
+            <span className="recipe-rating-text">
+              ({recipe.averageRating.toFixed(1)})
+            </span>
+            <StarRating rating={recipe.averageRating} />
+          </div>
+        )}
       </div>
     </div>
   );

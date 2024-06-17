@@ -1,0 +1,14 @@
+.most-recent-recipes {
+  width: 100%;
+}
+
+.most-recent-recipes h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}

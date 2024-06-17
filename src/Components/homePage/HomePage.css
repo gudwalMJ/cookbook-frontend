@@ -3,19 +3,88 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #f8f8f8; /* Light background color for the page */
-  min-height: 100vh; /* Ensure the page takes at least the full height of the viewport */
+  background-color: #f8f8f8;
+  min-height: 100vh;
 }
 
-.recipes-list {
+.featured-recipes-container,
+.highest-rated-recipes {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.featured-recipes,
+.highest-rated-recipes .recipes-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* Space between recipe cards */
-  justify-content: center; /* Center the recipe cards */
+  gap: 20px;
+  justify-content: center;
 }
 
-.featured-recipes {
+.content-section {
+  display: flex;
   width: 100%;
-  max-width: 800px;
+  max-width: 1200px;
   margin-top: 40px;
+}
+
+.most-recent {
+  flex: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.info-board-trending {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-left: 20px;
+}
+
+.trending-recipes {
+  width: 100%;
+}
+
+.recipe-card {
+  width: calc(25% - 20px); /* Four items per row */
+  box-sizing: border-box;
+}
+
+.most-recent .recipe-card {
+  width: calc(50% - 20px); /* Two items per row */
+}
+
+.trending-recipes .recipe-card {
+  width: calc(50% - 20px); /* Two items per row */
+  max-width: 100%; /* Adjust width to fit the smaller column */
+}
+
+@media (max-width: 900px) {
+  .recipe-card,
+  .most-recent .recipe-card,
+  .trending-recipes .recipe-card {
+    width: calc(50% - 20px); /* Two items per row for smaller screens */
+  }
+
+  .content-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .info-board-trending {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .recipe-card,
+  .most-recent .recipe-card,
+  .trending-recipes .recipe-card {
+    width: 100%; /* One item per row for very small screens */
+  }
 }
