@@ -1,6 +1,8 @@
 import React, { useState, useMemo, useEffect } from "react";
 import debounce from "lodash.debounce";
 import API from "../../api/api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import "./SearchBar.css";
 
 const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
@@ -71,51 +73,60 @@ const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
   return (
     <div className="search-bar-container">
       <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search for recipes..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-bar-input"
-        />
-        <select
-          value={difficulty}
-          onChange={(e) => setDifficulty(e.target.value)}
-          className="search-bar-filter"
-        >
-          <option value="">All Difficulties</option>
-          <option value="Easy">Easy</option>
-          <option value="Medium">Medium</option>
-          <option value="Hard">Hard</option>
-        </select>
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="search-bar-filter"
-        >
-          <option value="">All Categories</option>
-          <option value="Breakfast">Breakfast</option>
-          <option value="Brunch">Brunch</option>
-          <option value="Lunch">Lunch</option>
-          <option value="Dinner">Dinner</option>
-          <option value="Dessert">Dessert</option>
-          <option value="Snack">Snack</option>
-          <option value="Vegetarian">Vegetarian</option>
-          <option value="Vegan">Vegan</option>
-          <option value="Gluten-Free">Gluten-Free</option>
-          <option value="Others">Others</option>
-        </select>
-        <select
-          value={sortBy}
-          onChange={(e) => setSortBy(e.target.value)}
-          className="search-bar-filter"
-        >
-          <option value="">Sort By</option>
-          <option value="newest">Newest</option>
-          <option value="oldest">Oldest</option>
-          <option value="mostPopular">Most Popular</option>
-          <option value="highestRated">Highest Rated</option>
-        </select>
+        <div className="search-input-container">
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-bar-input"
+          />
+          <FontAwesomeIcon icon={faSearch} className="search-icon" />
+        </div>
+        <div className="dropdown">
+          <div className="dropdown-toggle">
+            All Difficulties
+            <FontAwesomeIcon icon={faChevronDown} className="dropdown-arrow" />
+          </div>
+          <div className="dropdown-menu">
+            <div onClick={() => setDifficulty("")}>All Difficulties</div>
+            <div onClick={() => setDifficulty("Easy")}>Easy</div>
+            <div onClick={() => setDifficulty("Medium")}>Medium</div>
+            <div onClick={() => setDifficulty("Hard")}>Hard</div>
+          </div>
+        </div>
+        <div className="dropdown">
+          <div className="dropdown-toggle">
+            All Categories
+            <FontAwesomeIcon icon={faChevronDown} className="dropdown-arrow" />
+          </div>
+          <div className="dropdown-menu">
+            <div onClick={() => setCategory("")}>All Categories</div>
+            <div onClick={() => setCategory("Breakfast")}>Breakfast</div>
+            <div onClick={() => setCategory("Brunch")}>Brunch</div>
+            <div onClick={() => setCategory("Lunch")}>Lunch</div>
+            <div onClick={() => setCategory("Dinner")}>Dinner</div>
+            <div onClick={() => setCategory("Dessert")}>Dessert</div>
+            <div onClick={() => setCategory("Snack")}>Snack</div>
+            <div onClick={() => setCategory("Vegetarian")}>Vegetarian</div>
+            <div onClick={() => setCategory("Vegan")}>Vegan</div>
+            <div onClick={() => setCategory("Gluten-Free")}>Gluten-Free</div>
+            <div onClick={() => setCategory("Others")}>Others</div>
+          </div>
+        </div>
+        <div className="dropdown">
+          <div className="dropdown-toggle">
+            Sort By
+            <FontAwesomeIcon icon={faChevronDown} className="dropdown-arrow" />
+          </div>
+          <div className="dropdown-menu">
+            <div onClick={() => setSortBy("")}>Sort By</div>
+            <div onClick={() => setSortBy("newest")}>Newest</div>
+            <div onClick={() => setSortBy("oldest")}>Oldest</div>
+            <div onClick={() => setSortBy("mostPopular")}>Most Popular</div>
+            <div onClick={() => setSortBy("highestRated")}>Highest Rated</div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,65 +1,82 @@
 .search-bar-container {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
   padding: 20px;
+  background-color: #f8f8f8;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-input-container {
+  position: relative;
 }
 
 .search-bar-input {
-  width: 100%;
-  max-width: 260px;
+  width: 200px;
   padding: 10px;
   font-size: 1em;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-bottom: 10px;
+  padding-right: 30px;
+  background-color: #efefef;
 }
 
-.filter-container {
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  color: #333;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  padding: 10px;
+  font-size: 1em;
+  background-color: #fff;
+  cursor: pointer;
   display: flex;
-  gap: 10px;
-  justify-content: center; /* Center the filters */
+  align-items: center;
+  gap: 5px;
+  border: none; /* Remove the border */
+  border-radius: 4px; /* Optional: Keep border-radius for better appearance */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow */
 }
 
-.search-bar-filter {
-  width: calc(
-    50% - 5px
-  ); /* Make each filter half the width of the search bar */
-  padding: 10px;
-  font-size: 1em;
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 200px;
 }
 
-.spinner {
-  border: 4px solid rgba(0, 0, 0, 0.1);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border-left-color: #09f;
-  animation: spin 1s ease infinite;
-  margin: 20px auto; /* Center the spinner */
+.dropdown-menu div {
+  padding: 10px;
+  cursor: pointer;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.dropdown-menu div:hover {
+  background-color: #f8f8f8;
 }
 
-.no-results,
-.error {
-  color: #ff0000; /* Red color for error and no results messages */
-  margin: 20px 0;
-  text-align: center; /* Center the text */
-}
-
-.results-message {
-  color: limegreen; /* Limegreen color for results messages */
-  margin: 20px 0;
-  text-align: center; /* Center the text */
+.dropdown-arrow {
+  margin-left: auto;
 }
