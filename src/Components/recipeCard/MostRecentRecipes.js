@@ -1,3 +1,4 @@
+// src/components/mostRecentRecipes/MostRecentRecipes.js
 import React, { useEffect, useState } from "react";
 import API from "../../api/api";
 import RecipeCard from "../recipeCard/RecipeCard";
@@ -24,10 +25,14 @@ const MostRecentRecipes = () => {
 
   return (
     <div className="most-recent-recipes">
-      <h2>Most Recent</h2>
+      <h2 className="section-title">Most Recent</h2>
       <div className="recipes-grid">
         {recipes.map((recipe) => (
-          <RecipeCard key={recipe._id} recipe={recipe} />
+          <RecipeCard
+            key={recipe._id}
+            recipe={recipe}
+            className="recipe-card"
+          />
         ))}
       </div>
     </div>

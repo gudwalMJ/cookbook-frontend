@@ -24,7 +24,7 @@ const TrendingRecipes = () => {
 
   return (
     <div className="trending-recipes">
-      <h2>Trending Now</h2>
+      <h2 className="section-title">Trending Now</h2>
       <div className="recipes-grid">
         {recipes.map((recipe) => (
           <RecipeCard key={recipe._id} recipe={recipe} />

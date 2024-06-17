@@ -1,5 +1,7 @@
+/* src/components/mostRecentRecipes/MostRecentRecipes.css */
 .most-recent-recipes {
   width: 100%;
+  padding: 20px;
 }
 
 .most-recent-recipes h2 {
@@ -11,4 +13,18 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 20px;
+}
+
+.most-recent-recipes .recipe-card {
+  width: 100%;
+  height: auto;
+}
+
+.most-recent-recipes .recipe-card-image {
+  height: 250px;
+}
+
+.most-recent-recipes .recipe-info {
+  height: auto;
+  padding: 10px;
 }

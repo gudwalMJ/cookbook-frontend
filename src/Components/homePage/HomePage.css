@@ -56,7 +56,9 @@
 }
 
 .most-recent .recipe-card {
-  width: calc(50% - 20px); /* Two items per row */
+  width: calc(
+    48% - 20px
+  ); /* Slightly larger than half to ensure gap is maintained */
 }
 
 .trending-recipes .recipe-card {

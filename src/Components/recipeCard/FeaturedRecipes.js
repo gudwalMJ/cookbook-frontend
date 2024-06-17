@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import API from "../../api/api";
 import RecipeCard from "../recipeCard/RecipeCard";
-import "./FeaturedRecipes.css"; // Import the CSS for styling
+import "./FeaturedRecipes.css";
 
 const FeaturedRecipes = () => {
   const [recipes, setRecipes] = useState([]);
