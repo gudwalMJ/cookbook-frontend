@@ -17,7 +17,7 @@
 }
 
 .search-bar-input {
-  width: 200px;
+  width: 300px;
   padding: 10px;
   font-size: 1em;
   border: 1px solid #ccc;
@@ -46,9 +46,9 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  border: none; /* Remove the border */
-  border-radius: 4px; /* Optional: Keep border-radius for better appearance */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add subtle shadow */
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown:hover .dropdown-menu {

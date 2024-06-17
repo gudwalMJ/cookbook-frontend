@@ -30,7 +30,7 @@ const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
         setError("");
         setNoResults(false);
 
-        API.get(`/recipes`, {
+        API.get(`/recipes/search`, {
           params: {
             query: searchTerm,
             difficulty,
@@ -76,7 +76,7 @@ const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
         <div className="search-input-container">
           <input
             type="text"
-            placeholder="Search"
+            placeholder="Search for recipes or ingredients..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="search-bar-input"
