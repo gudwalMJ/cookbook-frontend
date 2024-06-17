@@ -203,7 +203,11 @@ const RecipeDetail = () => {
         <li>
           <strong>Star Rating:</strong>{" "}
           {recipe.averageRating ? recipe.averageRating.toFixed(2) : 0}
-          <RatingStars userRating={userRating} handleRating={handleRating} />
+          <RatingStars
+            userRating={userRating}
+            averageRating={recipe.averageRating}
+            handleRating={handleRating}
+          />
         </li>
         <li>
           <strong>Preparation Time:</strong> {recipe.preparationTime} minutes
