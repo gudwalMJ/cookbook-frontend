@@ -1,6 +1,6 @@
 // src/components/recipeCard/RecipeCard.js
 import React from "react";
-import { Link } from "react-router-dom";
+
 import "./RecipeCard.css";
 
 const StarRating = ({ rating }) => {

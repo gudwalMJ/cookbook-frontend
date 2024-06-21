@@ -9,24 +9,16 @@ const InfoBoard = () => {
       <div className="info-content">
         <img src="https://via.placeholder.com/150" alt="Profile" />
         <p>
-          Hi! I'm Natasha Kravchuk. Here you'll find delicious, trusted recipes
-          with easy step-by-step photos and videos.{" "}
+          Hi! I'm Josip Milan. Here you'll find delicious, trusted recipes that
+          will surely fill your stomach with happiness.{" "}
           <Link to="/about">Learn more...</Link>
         </p>
       </div>
       <div className="social-icons">
-        <a href="#">
-          <i className="fab fa-instagram"></i>
-        </a>
-        <a href="#">
-          <i className="fab fa-facebook"></i>
-        </a>
-        <a href="#">
-          <i className="fab fa-pinterest"></i>
-        </a>
-        <a href="#">
-          <i className="fab fa-youtube"></i>
-        </a>
+        <i className="fab fa-instagram" aria-hidden="true"></i>
+        <i className="fab fa-facebook" aria-hidden="true"></i>
+        <i className="fab fa-pinterest" aria-hidden="true"></i>
+        <i className="fab fa-youtube" aria-hidden="true"></i>
       </div>
     </div>
   );

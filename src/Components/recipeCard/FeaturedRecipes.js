@@ -10,7 +10,7 @@ const FeaturedRecipes = () => {
   useEffect(() => {
     API.get("/recipes/popular")
       .then((response) => {
-        setRecipes(response.data.slice(0, 10)); // Only take top 10 recipes
+        setRecipes(response.data.slice(0, 8)); // Only take top 8 recipes
       })
       .catch((error) => {
         console.error("Error fetching popular recipes:", error);

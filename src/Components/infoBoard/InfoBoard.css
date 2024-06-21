@@ -1,7 +1,7 @@
+/* src/components/infoBoard/InfoBoard.css */
 .info-board {
   text-align: center;
   margin: 20px 0;
-  width: 100%;
 }
 
 .info-board h2 {
@@ -26,7 +26,8 @@
   margin-top: 20px;
 }
 
-.social-icons a {
+.social-icons i {
   margin: 0 10px;
   font-size: 1.5em;
+  color: #000; /* Change this to your desired color */
 }
