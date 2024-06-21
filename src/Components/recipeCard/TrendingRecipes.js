@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import API from "../../api/api";
-import RecipeCard from "../recipeCard/RecipeCard";
 import "./TrendingRecipes.css";
 
 const TrendingRecipes = () => {
@@ -25,9 +24,18 @@ const TrendingRecipes = () => {
   return (
     <div className="trending-recipes">
       <h2 className="section-title">Trending Now</h2>
-      <div className="recipes-grid">
+      <div className="trending-recipes-grid">
         {recipes.map((recipe) => (
-          <RecipeCard key={recipe._id} recipe={recipe} />
+          <div key={recipe._id} className="trending-recipe-card">
+            <img
+              src={recipe.imageUrls[0]}
+              alt={recipe.title}
+              className="trending-recipe-card-image"
+            />
+            <div className="trending-recipe-info">
+              <h3>{recipe.title}</h3>
+            </div>
+          </div>
         ))}
       </div>
     </div>

@@ -1,9 +1,9 @@
 import React from "react";
 import FeaturedRecipes from "../recipeCard/FeaturedRecipes";
 import MostRecentRecipes from "../recipeCard/MostRecentRecipes";
+import InfoBoard from "../infoBoard/InfoBoard";
 import TrendingRecipes from "../recipeCard/TrendingRecipes";
 import HighestRatedRecipes from "../recipeCard/HighestRatedRecipes";
-import InfoBoard from "../infoBoard/InfoBoard";
 import "./HomePage.css";
 
 const HomePage = ({ recipes, isLoading, noResults, error }) => {
