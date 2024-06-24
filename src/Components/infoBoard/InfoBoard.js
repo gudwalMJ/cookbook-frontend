@@ -7,7 +7,7 @@ const InfoBoard = () => {
     <div className="info-board">
       <h2>Welcome to our food blog!</h2>
       <div className="info-content">
-        <img src="https://via.placeholder.com/150" alt="Profile" />
+        <img src="/images/profiles/admin.webp" alt="Profile" />
         <p>
           Hi! I'm Josip Milan. Here you'll find delicious, trusted recipes that
           will surely fill your stomach with happiness.{" "}

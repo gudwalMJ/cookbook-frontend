@@ -1,11 +1,10 @@
-// src/components/profile/Profile.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Modal from "react-modal";
 // Import Components
 import AddRecipe from "../../addRecipe/AddRecipe";
 import UserRecipes from "../../userRecipes/UserRecipes";
-import RecipeCard from "../../recipeCard/RecipeCard"; // Import RecipeCard to display favorite recipes
+import RecipeCard from "../../recipeCard/RecipeCard";
 // Styling
 import "./Profile.css";
 
@@ -22,6 +21,7 @@ const profileImages = [
   "/images/profiles/profile_8.png",
   "/images/profiles/profile_9.png",
   "/images/profiles/profile_10.png",
+  // "/images/profiles/admin.webp" // Remove admin image
 ];
 
 const Profile = () => {
