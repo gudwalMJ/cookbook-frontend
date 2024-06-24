@@ -34,6 +34,23 @@ const TrendingRecipes = () => {
             />
             <div className="trending-recipe-info">
               <h3>{recipe.title}</h3>
+              <div className="recipe-rating-container">
+                <span className="recipe-rating-text">
+                  {recipe.averageRating ? recipe.averageRating.toFixed(1) : 0}
+                </span>
+                <div className="star-rating">
+                  {[...Array(5)].map((_, i) => (
+                    <span
+                      key={i}
+                      className={`star ${
+                        i < recipe.averageRating ? "filled" : ""
+                      }`}
+                    >
+                      ★
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         ))}

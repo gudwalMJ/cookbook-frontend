@@ -92,7 +92,7 @@
 .search-result-card {
   flex: 1 1 calc(30% - 40px); /* Adjusting width to keep it more square */
   box-sizing: border-box;
-  max-width: calc(30% - 40px);
+  max-width: calc(70% - 40px);
 }
 
 .recipe-card-image {

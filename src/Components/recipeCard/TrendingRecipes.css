@@ -43,3 +43,30 @@
   font-size: 1em;
   color: #333;
 }
+
+.recipe-rating-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.recipe-rating-text {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.star-rating {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  font-size: 1em;
+  color: #ccc;
+}
+
+.star.filled {
+  color: gold;
+}

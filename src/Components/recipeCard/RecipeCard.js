@@ -7,6 +7,7 @@ const RecipeCard = ({ recipe, className }) => {
     recipe.imageUrls && recipe.imageUrls.length > 0
       ? recipe.imageUrls[0]
       : "/images/placeholder.png"; // Use a placeholder image if no image URL is available
+  const rating = recipe.averageRating || 0; // Use averageRating from the backend
 
   return (
     <Link to={`/recipes/${recipe._id}`} className={`recipe-card ${className}`}>
@@ -14,13 +15,10 @@ const RecipeCard = ({ recipe, className }) => {
       <div className="recipe-info">
         <h3>{recipe.title}</h3>
         <div className="recipe-rating-container">
-          <span className="recipe-rating-text">{recipe.rating}</span>
+          <span className="recipe-rating-text">{rating.toFixed(1)}</span>
           <div className="star-rating">
             {[...Array(5)].map((_, i) => (
-              <span
-                key={i}
-                className={`star ${i < recipe.rating ? "filled" : ""}`}
-              >
+              <span key={i} className={`star ${i < rating ? "filled" : ""}`}>
                 ★
               </span>
             ))}
