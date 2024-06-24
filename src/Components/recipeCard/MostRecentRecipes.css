@@ -20,7 +20,8 @@
   border-radius: 8px;
   overflow: hidden;
   width: 100%;
-  height: auto;
+  display: flex;
+  flex-direction: column;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
   text-align: center;
@@ -40,7 +41,10 @@
 
 .most-recent-recipe-info {
   padding: 15px;
-  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .most-recent-recipe-info h3 {
