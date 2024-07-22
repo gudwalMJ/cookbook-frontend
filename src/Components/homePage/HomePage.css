@@ -1,3 +1,4 @@
+/* HomePage.css */
 .home-page {
   padding: 20px;
   display: flex;
@@ -5,6 +6,11 @@
   align-items: center;
   background-color: #f8f8f8;
   min-height: 100vh;
+}
+
+.dark-mode .home-page {
+  background-color: #333333;
+  color: #ffffff;
 }
 
 .featured-recipes-container,

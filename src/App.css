@@ -1,0 +1,11 @@
+/* App.css */
+.app {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode {
+  background-color: #212121;
+  color: #ffffff;
+}
+
+/* Add more dark mode styles for other elements as needed */

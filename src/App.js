@@ -13,6 +13,7 @@ import Login from "./components/user/login/Login";
 import Profile from "./components/user/profile/Profile.js";
 // Import Styling
 import "./index.css";
+import "./App.css"; // Add this line to import App.css
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -20,6 +21,7 @@ function App() {
   const [noResults, setNoResults] = useState(false);
   const [error, setError] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(false); // Add darkMode state
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -27,14 +29,22 @@ function App() {
 
   return (
     <Router>
-      <div>
-        <Navbar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <div className={`app ${darkMode ? "dark-mode" : ""}`}>
+        {" "}
+        {/* Apply dark mode class */}
+        <Navbar
+          isSidebarOpen={isSidebarOpen}
+          toggleSidebar={toggleSidebar}
+          darkMode={darkMode}
+          setDarkMode={setDarkMode}
+        />
         <div className={`main-content ${isSidebarOpen ? "expanded" : ""}`}>
           <SearchBar
             setRecipes={setRecipes}
             setIsLoading={setIsLoading}
             setNoResults={setNoResults}
             setError={setError}
+            darkMode={darkMode}
           />
           <Routes>
             <Route

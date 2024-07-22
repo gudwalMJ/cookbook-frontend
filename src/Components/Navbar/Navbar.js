@@ -9,14 +9,15 @@ import {
   faUser,
   faSignOutAlt,
   faBookmark,
-  faCog,
   faQuestionCircle,
+  faMoon,
+  faSun,
 } from "@fortawesome/free-solid-svg-icons";
 import useLogout from "../user/logout/Logout";
 import logo from "../../assets/images/logo.webp"; // Ensure the path to your logo is correct
 import "./navbar.css";
 
-const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
+const Navbar = ({ isSidebarOpen, toggleSidebar, darkMode, setDarkMode }) => {
   const token = localStorage.getItem("token");
   const handleLogout = useLogout();
 
@@ -67,12 +68,6 @@ const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
               </Link>
             </li>
             <li>
-              <Link to="/settings" className="nav-link">
-                <FontAwesomeIcon icon={faCog} />
-                {isSidebarOpen && <span>Settings</span>}
-              </Link>
-            </li>
-            <li>
               <Link to="/help" className="nav-link">
                 <FontAwesomeIcon icon={faQuestionCircle} />
                 {isSidebarOpen && <span>Help</span>}
@@ -87,6 +82,10 @@ const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
           </>
         )}
       </ul>
+      <div className="dark-mode-toggle" onClick={() => setDarkMode(!darkMode)}>
+        <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
+        {isSidebarOpen && <span>{darkMode ? "Light Mode" : "Dark Mode"}</span>}
+      </div>
     </div>
   );
 };

@@ -1,9 +1,16 @@
+/* SearchBar.css */
 .search-bar-container {
   width: 100%;
   display: flex;
   justify-content: center;
   padding: 20px;
   background-color: #f8f8f8;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode .search-bar-container {
+  background-color: #333;
+  color: #ffffff;
 }
 
 .search-bar {
@@ -26,12 +33,22 @@
   background-color: #efefef;
 }
 
+.dark-mode .search-bar-input {
+  background-color: #555;
+  color: #fff;
+  border-color: #666;
+}
+
 .search-icon {
   position: absolute;
   top: 50%;
   right: 10px;
   transform: translateY(-50%);
   color: #333;
+}
+
+.dark-mode .search-icon {
+  color: #ccc;
 }
 
 .dropdown {
@@ -51,6 +68,11 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.dark-mode .dropdown-toggle {
+  background-color: #444;
+  color: #fff;
+}
+
 .dropdown:hover .dropdown-menu {
   display: block;
 }
@@ -68,6 +90,11 @@
   width: 200px;
 }
 
+.dark-mode .dropdown-menu {
+  background-color: #555;
+  border-color: #666;
+}
+
 .dropdown-menu div {
   padding: 10px;
   cursor: pointer;
@@ -77,8 +104,16 @@
   background-color: #f8f8f8;
 }
 
+.dark-mode .dropdown-menu div:hover {
+  background-color: #666;
+}
+
 .dropdown-arrow {
   margin-left: auto;
+}
+
+.dark-mode .dropdown-arrow {
+  color: #ccc;
 }
 
 .search-results {
