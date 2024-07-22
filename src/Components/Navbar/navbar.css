@@ -1,6 +1,6 @@
 .sidebar {
   height: 100%;
-  width: 60px; /* Initial width of the sidebar */
+  width: 70px; /* Initial width increased by 10px */
   position: fixed;
   top: 0;
   left: 0;
@@ -12,7 +12,14 @@
 }
 
 .sidebar.open {
-  width: 200px; /* Expanded width of the sidebar */
+  width: 210px; /* Expanded width increased by 10px */
+}
+
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
 }
 
 .sidebar-toggle {
@@ -22,44 +29,99 @@
   border: none;
   cursor: pointer;
   outline: none;
-  margin: 10px;
+  margin: 10px auto; /* Center the button horizontally */
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  width: 100%; /* Ensure it takes full width */
+}
+
+.logo {
+  width: 50px; /* Adjust the size of the logo */
+  height: auto;
+  transition: width 0.3s;
+}
+
+.sidebar.open .logo {
+  width: 150px; /* Adjust the size of the logo when sidebar is open */
 }
 
 .sidebar ul {
   list-style-type: none;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center icons when sidebar is closed */
+  gap: 15px; /* Add space between the list items */
+}
+
+.sidebar.open ul {
+  align-items: flex-start; /* Align items to the start when sidebar is open */
+  padding-left: 20px;
 }
 
 .sidebar ul li {
-  padding: 15px 10px;
-  text-align: left;
+  width: 100%;
 }
 
-.sidebar ul li a,
-.sidebar ul li button {
+.nav-link {
   text-decoration: none;
   font-size: 1.2em;
   color: white;
   display: flex;
   align-items: center;
+  justify-content: center; /* Center icons when sidebar is closed */
   border: none;
   background: none;
   cursor: pointer;
   outline: none;
   width: 100%;
-  text-align: left;
+  text-align: center; /* Center text when sidebar is open */
 }
 
-.sidebar ul li a:hover,
-.sidebar ul li button:hover {
+.sidebar.open .nav-link {
+  justify-content: flex-start; /* Align icons and text to the start when sidebar is open */
+  text-align: left; /* Align text to the left when sidebar is open */
+  padding-left: 0; /* Remove additional padding */
+}
+
+.nav-link:hover {
   background-color: #575757;
 }
 
-.sidebar ul li a span,
-.sidebar ul li button span {
+.nav-link span {
   margin-left: 10px;
 }
 
 .sidebar ul li button {
   width: 100%;
+}
+
+.sidebar ul li button.nav-link {
+  text-align: center;
+}
+
+.sidebar.open ul li button.nav-link {
+  text-align: left; /* Align text to the left when sidebar is open */
+  padding-left: 0; /* Remove additional padding */
+}
+
+.tooltip {
+  position: absolute;
+  left: 75px; /* Adjust position to account for new width */
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  font-size: 0.9em;
+  display: none;
+}
+
+.sidebar ul li:hover .tooltip {
+  display: block;
 }
