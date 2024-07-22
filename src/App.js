@@ -59,9 +59,9 @@ function App() {
               }
             />
             <Route path="/recipes/:id" element={<RecipeDetail />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/signup" element={<SignUp darkMode={darkMode} />} />
+            <Route path="/login" element={<Login darkMode={darkMode} />} />
+            <Route path="/profile" element={<Profile darkMode={darkMode} />} />
             <Route path="/edit-recipe/:id" element={<EditRecipe />} />
             <Route path="/favorites" element={<Favorites />} />{" "}
             {/* Add the Favorites route */}

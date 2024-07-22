@@ -24,7 +24,7 @@ const profileImages = [
   // "/images/profiles/admin.webp" // Remove admin image
 ];
 
-const Profile = () => {
+const Profile = ({ darkMode }) => {
   const [user, setUser] = useState(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -82,7 +82,7 @@ const Profile = () => {
   if (!user) return <div>Loading...</div>;
 
   return (
-    <div className="profile-page">
+    <div className={`profile-page ${darkMode ? "dark-mode" : ""}`}>
       <h1>Profile</h1>
       <img src={user.profileImage} alt="Profile" className="profile-image" />
       <p>Username: {user.username}</p>

@@ -1,10 +1,9 @@
-// src/components/login/Login.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
-const Login = () => {
+const Login = ({ darkMode }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
+    <div className={`login-container ${darkMode ? "dark-mode" : ""}`}>
       <form className="login-form" onSubmit={handleLogin}>
         <h1>Login</h1>
         <input

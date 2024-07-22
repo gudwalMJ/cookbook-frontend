@@ -1,10 +1,9 @@
-// src/components/signUp/SignUp.js
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./SignUp.css";
 
-const SignUp = () => {
+const SignUp = ({ darkMode }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,7 +25,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="signup-container">
+    <div className={`signup-container ${darkMode ? "dark-mode" : ""}`}>
       <form className="signup-form" onSubmit={handleSignUp}>
         <h1>Sign Up</h1>
         <input
