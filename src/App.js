@@ -58,7 +58,10 @@ function App() {
                 />
               }
             />
-            <Route path="/recipes/:id" element={<RecipeDetail />} />
+            <Route
+              path="/recipes/:id"
+              element={<RecipeDetail darkMode={darkMode} />}
+            />
             <Route path="/signup" element={<SignUp darkMode={darkMode} />} />
             <Route path="/login" element={<Login darkMode={darkMode} />} />
             <Route path="/profile" element={<Profile darkMode={darkMode} />} />

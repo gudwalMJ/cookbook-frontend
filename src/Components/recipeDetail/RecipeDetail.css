@@ -1,4 +1,3 @@
-/* src/components/recipeDetail/RecipeDetail.css */
 .recipe-detail {
   padding: 20px;
   max-width: 800px;
@@ -6,24 +5,45 @@
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode .recipe-detail {
+  background-color: #333;
+  color: #fff;
 }
 
 .recipe-detail h1 {
   font-size: 2.5em;
   margin-bottom: 20px;
   color: #333;
+  transition: color 0.3s;
+}
+
+.dark-mode .recipe-detail h1 {
+  color: #fff;
 }
 
 .recipe-detail p {
   font-size: 1.2em;
   color: #666;
   margin-bottom: 20px;
+  transition: color 0.3s;
+}
+
+.dark-mode .recipe-detail p {
+  color: #ccc;
 }
 
 .recipe-detail h3 {
   font-size: 1.8em;
   margin-top: 30px;
   color: #333;
+  transition: color 0.3s;
+}
+
+.dark-mode .recipe-detail h3 {
+  color: #fff;
 }
 
 .recipe-detail ul,
@@ -36,6 +56,11 @@
   font-size: 1.2em;
   color: #555;
   margin-bottom: 10px;
+  transition: color 0.3s;
+}
+
+.dark-mode .recipe-detail li {
+  color: #ccc;
 }
 
 .back-button {
@@ -53,6 +78,10 @@
 }
 
 .back-button:hover {
+  background-color: #007acc;
+}
+
+.dark-mode .back-button {
   background-color: #007acc;
 }
 
@@ -74,6 +103,11 @@
 
 .edit-button:hover,
 .delete-button:hover {
+  background-color: #007acc;
+}
+
+.dark-mode .edit-button,
+.dark-mode .delete-button {
   background-color: #007acc;
 }
 

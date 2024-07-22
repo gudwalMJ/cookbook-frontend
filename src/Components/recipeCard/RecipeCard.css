@@ -6,10 +6,15 @@
   margin: 10px;
   width: 100%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s, color 0.3s;
   text-align: center;
   text-decoration: none;
   color: inherit;
+}
+
+.dark-mode .recipe-card {
+  background-color: #444;
+  color: #fff;
 }
 
 .recipe-card:hover {
@@ -33,6 +38,11 @@
   margin-top: 0;
   font-size: 1.5em;
   color: #333;
+  transition: color 0.3s;
+}
+
+.dark-mode .recipe-info h3 {
+  color: #fff;
 }
 
 .recipe-rating-container {
@@ -46,6 +56,11 @@
 .recipe-rating-text {
   font-size: 0.9em;
   color: #666;
+  transition: color 0.3s;
+}
+
+.dark-mode .recipe-rating-text {
+  color: #ddd;
 }
 
 .star-rating {
@@ -56,6 +71,11 @@
 .star {
   font-size: 1em;
   color: #ccc;
+  transition: color 0.3s;
+}
+
+.dark-mode .star {
+  color: #555;
 }
 
 .star.filled {
