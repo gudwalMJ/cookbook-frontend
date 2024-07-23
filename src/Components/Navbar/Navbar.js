@@ -10,16 +10,18 @@ import {
   faSignOutAlt,
   faBookmark,
   faQuestionCircle,
-  faMoon,
-  faSun,
 } from "@fortawesome/free-solid-svg-icons";
 import useLogout from "../user/logout/Logout";
-import logo from "../../assets/images/logo.webp"; // Ensure the path to your logo is correct
+import logo from "../../assets/images/logo.webp";
 import "./navbar.css";
 
 const Navbar = ({ isSidebarOpen, toggleSidebar, darkMode, setDarkMode }) => {
   const token = localStorage.getItem("token");
   const handleLogout = useLogout();
+
+  const handleDarkModeToggle = () => {
+    setDarkMode(!darkMode);
+  };
 
   return (
     <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
@@ -82,9 +84,17 @@ const Navbar = ({ isSidebarOpen, toggleSidebar, darkMode, setDarkMode }) => {
           </>
         )}
       </ul>
-      <div className="dark-mode-toggle" onClick={() => setDarkMode(!darkMode)}>
-        <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
-        {isSidebarOpen && <span>{darkMode ? "Light Mode" : "Dark Mode"}</span>}
+      <div className="dark-mode-toggle">
+        <span className="toggle-switch">
+          <input
+            type="checkbox"
+            checked={darkMode}
+            onChange={handleDarkModeToggle}
+            id="darkModeToggle"
+          />
+          <label htmlFor="darkModeToggle"></label>
+        </span>
+        {isSidebarOpen && <span>{darkMode ? "Dark Mode" : "Light Mode"}</span>}
       </div>
     </div>
   );
