@@ -185,13 +185,7 @@ const RecipeDetail = () => {
       )}
 
       <h3>Details</h3>
-      <ul className="details-list">
-        <li>
-          <strong>Servings:</strong> {recipe.servings}
-        </li>
-        <li>
-          <strong>Difficulty:</strong> {recipe.difficulty}
-        </li>
+      <ul className="details-group">
         <li>
           <strong>Likes:</strong> {recipe.likes}{" "}
           <LikeButton
@@ -209,17 +203,29 @@ const RecipeDetail = () => {
           />
         </li>
         <li>
-          <strong>Preparation Time:</strong> {recipe.preparationTime} minutes
-        </li>
-        <li>
-          <strong>Categories:</strong> {recipe.categories.join(", ")}
-        </li>
-        <li>
           <FavoriteButton
             isFavorite={isFavorite}
             handleFavorite={handleFavorite}
           />
         </li>
+      </ul>
+      <ul className="details-group">
+        <li>
+          <strong>Difficulty:</strong> {recipe.difficulty}
+        </li>
+        <li>
+          <strong>Categories:</strong> {recipe.categories.join(", ")}
+        </li>
+        <li>
+          <strong>Servings:</strong> {recipe.servings}
+        </li>
+      </ul>
+      <ul className="details-group-single">
+        <li>
+          <strong>Preparation Time:</strong> {recipe.preparationTime} minutes
+        </li>
+      </ul>
+      <ul className="details-group-single">
         <li>
           <div className="share-buttons">
             <FacebookShareButton url={shareUrl} quote={recipe.title}>

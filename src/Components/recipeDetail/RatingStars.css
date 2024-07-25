@@ -20,6 +20,9 @@
 .gold-star {
   color: gold;
 }
+.gold-star:hover {
+  color: red; /* Color on hover */
+}
 
 .gray-star {
   color: gray;

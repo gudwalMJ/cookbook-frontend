@@ -51,21 +51,24 @@
   padding: 0;
 }
 
-.recipe-detail ul.details-list {
+.details-group,
+.details-group-single {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-}
-
-.recipe-detail li {
+  margin-bottom: 10px;
   font-size: 1.2em;
   color: #555;
-  margin-bottom: 10px;
+}
+
+.details-group li,
+.details-group-single li {
   display: flex;
   align-items: center;
 }
 
-.recipe-detail li strong {
+.details-group li strong,
+.details-group-single li strong {
   margin-right: 10px;
 }
 
@@ -145,6 +148,11 @@
 }
 
 .rating-container {
+  display: flex;
+  align-items: center;
+}
+
+.favorite-button-container {
   display: flex;
   align-items: center;
 }
