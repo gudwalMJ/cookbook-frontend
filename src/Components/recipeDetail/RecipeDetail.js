@@ -14,7 +14,7 @@ import {
 } from "react-share";
 import LikeButton from "./LikeButton";
 import RatingStars from "./RatingStars";
-import FavoriteButton from "./FavoriteButton";
+import FavoriteButton from "./FavoriteButton"; // Import FavoriteButton
 import useFetchUser from "./UserFetcher";
 import useFetchRecipe from "./RecipeFetcher";
 import "./RecipeDetail.css";
@@ -62,7 +62,7 @@ const RecipeDetail = () => {
         ...prevRecipe,
         averageRating: parseFloat(response.data.averageRating),
       }));
-      setUserRating(rating);
+      setUserRating(rating); // Update the userRating state
     } catch (error) {
       console.error(
         "Error submitting rating:",
@@ -194,17 +194,15 @@ const RecipeDetail = () => {
           <strong>Difficulty:</strong> {recipe.difficulty}
         </li>
         <li>
-          <strong>Likes:</strong>
-          {recipe.likes}
+          <strong>Likes:</strong> {recipe.likes}
           <LikeButton
             userLiked={userLiked}
             handleLike={handleLike}
             handleUnlike={handleUnlike}
           />
         </li>
-        <li>
-          <strong>Star Rating:</strong>{" "}
-          {recipe.averageRating ? recipe.averageRating.toFixed(2) : 0}
+        <li className="rating-container">
+          <strong>Rating:</strong>{" "}
           <RatingStars
             userRating={userRating}
             averageRating={recipe.averageRating}
