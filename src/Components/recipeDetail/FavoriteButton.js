@@ -17,7 +17,7 @@ const FavoriteButton = ({ isFavorite, handleFavorite }) => {
         />
       </button>
       <span className="favorite-text">
-        {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+        {isFavorite ? "Unfavorite" : "Favorite"}
       </span>
     </div>
   );

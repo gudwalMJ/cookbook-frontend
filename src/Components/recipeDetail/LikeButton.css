@@ -7,6 +7,7 @@
   transition: color 0.3s;
   padding: 0;
   margin-left: 8px; /* Space between the number and the icon */
+  margin-right: 10px;
 }
 
 .like-button.liked {
