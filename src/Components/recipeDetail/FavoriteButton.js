@@ -7,7 +7,10 @@ import "./FavoriteButton.css";
 const FavoriteButton = ({ isFavorite, handleFavorite }) => {
   return (
     <div className="favorite-button-container">
-      <button className="favorite-button" onClick={handleFavorite}>
+      <button
+        className={`favorite-button ${isFavorite ? "liked" : ""}`}
+        onClick={handleFavorite}
+      >
         <FontAwesomeIcon
           icon={isFavorite ? solidHeart : regularHeart}
           className="favorite-icon"

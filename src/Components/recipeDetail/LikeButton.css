@@ -10,7 +10,7 @@
 }
 
 .like-button.liked {
-  color: red; /* Color when liked */
+  color: gold; /* Color when liked */
 }
 
 .like-button:hover {

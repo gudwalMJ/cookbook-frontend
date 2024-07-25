@@ -3,6 +3,12 @@
   align-items: center;
 }
 
+.favorite-text {
+  margin-left: 8px; /* Space between the heart icon and the text */
+  color: inherit; /* Inherit color from the parent element */
+  cursor: default; /* Default cursor for the text */
+}
+
 .favorite-button {
   background: none;
   border: none;
@@ -13,14 +19,13 @@
 .favorite-icon {
   font-size: 1.5em;
   color: gray; /* Default color for the heart icon */
+  transition: color 0.3s;
+}
+
+.favorite-button.liked .favorite-icon {
+  color: gold; /* Color when favorited */
 }
 
 .favorite-button:hover .favorite-icon {
-  color: gold; /* Color when hovered */
-}
-
-.favorite-text {
-  margin-left: 8px; /* Space between the heart icon and the text */
-  color: inherit; /* Inherit color from the parent element */
-  cursor: default; /* Default cursor for the text */
+  color: red; /* Color when hovered */
 }

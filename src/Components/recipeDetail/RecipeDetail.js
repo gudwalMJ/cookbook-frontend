@@ -185,7 +185,7 @@ const RecipeDetail = () => {
       )}
 
       <h3>Details</h3>
-      <ul>
+      <ul className="details-list">
         <li>
           <strong>Servings:</strong> {recipe.servings}
         </li>
@@ -193,7 +193,7 @@ const RecipeDetail = () => {
           <strong>Difficulty:</strong> {recipe.difficulty}
         </li>
         <li>
-          <strong>Likes:</strong> {recipe.likes}
+          <strong>Likes:</strong> {recipe.likes}{" "}
           <LikeButton
             userLiked={userLiked}
             handleLike={handleLike}
