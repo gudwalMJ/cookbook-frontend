@@ -52,6 +52,11 @@
   margin-bottom: 20px;
 }
 
+.recipe-detail ul {
+  list-style: none; /* Remove bullets from ul */
+  padding: 0; /* Remove default padding */
+}
+
 .recipe-detail li {
   font-size: 1.2em;
   color: #555;

@@ -8,10 +8,9 @@ import {
   FacebookShareButton,
   TwitterShareButton,
   EmailShareButton,
-  FacebookIcon,
-  TwitterIcon,
-  EmailIcon,
 } from "react-share";
+import { FaFacebook, FaEnvelope } from "react-icons/fa";
+import { SiX } from "react-icons/si";
 import LikeButton from "./LikeButton";
 import RatingStars from "./RatingStars";
 import FavoriteButton from "./FavoriteButton"; // Import FavoriteButton
@@ -224,13 +223,13 @@ const RecipeDetail = () => {
         <li>
           <div className="share-buttons">
             <FacebookShareButton url={shareUrl} quote={recipe.title}>
-              <FacebookIcon size={32} round />
+              <FaFacebook size={32} round />
             </FacebookShareButton>
             <TwitterShareButton url={shareUrl} title={recipe.title}>
-              <TwitterIcon size={32} round />
+              <SiX size={32} round />
             </TwitterShareButton>
             <EmailShareButton url={shareUrl} subject={recipe.title}>
-              <EmailIcon size={32} round />
+              <FaEnvelope size={32} round />
             </EmailShareButton>
           </div>
         </li>
