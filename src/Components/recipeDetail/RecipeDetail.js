@@ -14,8 +14,7 @@ import {
 } from "react-share";
 import LikeButton from "./LikeButton";
 import RatingStars from "./RatingStars";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import FavoriteButton from "./FavoriteButton";
 import useFetchUser from "./UserFetcher";
 import useFetchRecipe from "./RecipeFetcher";
 import "./RecipeDetail.css";
@@ -63,7 +62,7 @@ const RecipeDetail = () => {
         ...prevRecipe,
         averageRating: parseFloat(response.data.averageRating),
       }));
-      setUserRating(rating); // Update the userRating state
+      setUserRating(rating);
     } catch (error) {
       console.error(
         "Error submitting rating:",
@@ -156,7 +155,7 @@ const RecipeDetail = () => {
       <Slideshow images={recipe.imageUrls} />
       <p>{recipe.description}</p>
       {user && (user._id === recipe.creator._id || user.isAdmin) && (
-        <div>
+        <div className="button-container">
           <button
             onClick={() => navigate(`/edit-recipe/${recipe._id}`)}
             className="edit-button"
@@ -185,6 +184,7 @@ const RecipeDetail = () => {
           </button>
         </div>
       )}
+
       <h3>Details</h3>
       <ul>
         <li>
@@ -194,7 +194,8 @@ const RecipeDetail = () => {
           <strong>Difficulty:</strong> {recipe.difficulty}
         </li>
         <li>
-          <strong>Likes:</strong> {recipe.likes}
+          <strong>Likes:</strong>
+          {recipe.likes}
           <LikeButton
             userLiked={userLiked}
             handleLike={handleLike}
@@ -217,10 +218,10 @@ const RecipeDetail = () => {
           <strong>Categories:</strong> {recipe.categories.join(", ")}
         </li>
         <li>
-          <button className="favorite-button" onClick={handleFavorite}>
-            <FontAwesomeIcon icon={faHeart} />
-            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
-          </button>
+          <FavoriteButton
+            isFavorite={isFavorite}
+            handleFavorite={handleFavorite}
+          />
         </li>
         <li>
           <div className="share-buttons">

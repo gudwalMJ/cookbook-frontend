@@ -1,0 +1,18 @@
+.like-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  color: gray; /* Default color for the icon */
+  transition: color 0.3s;
+  padding: 0;
+  margin-left: 8px; /* Space between the number and the icon */
+}
+
+.like-button.liked {
+  color: red; /* Color when liked */
+}
+
+.like-button:hover {
+  color: red; /* Color on hover */
+}
