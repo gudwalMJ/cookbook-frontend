@@ -14,7 +14,8 @@ import {
 } from "react-share";
 import LikeButton from "./LikeButton";
 import RatingStars from "./RatingStars";
-import FavoriteButton from "./FavoriteButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import useFetchUser from "./UserFetcher";
 import useFetchRecipe from "./RecipeFetcher";
 import "./RecipeDetail.css";
@@ -216,10 +217,10 @@ const RecipeDetail = () => {
           <strong>Categories:</strong> {recipe.categories.join(", ")}
         </li>
         <li>
-          <FavoriteButton
-            isFavorite={isFavorite}
-            handleFavorite={handleFavorite}
-          />
+          <button className="favorite-button" onClick={handleFavorite}>
+            <FontAwesomeIcon icon={faHeart} />
+            {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
+          </button>
         </li>
         <li>
           <div className="share-buttons">

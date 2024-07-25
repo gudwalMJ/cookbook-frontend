@@ -1,0 +1,26 @@
+.favorite-button-container {
+  display: flex;
+  align-items: center;
+}
+
+.favorite-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.favorite-icon {
+  font-size: 1.5em;
+  color: gray; /* Default color for the heart icon */
+}
+
+.favorite-button:hover .favorite-icon {
+  color: gold; /* Color when hovered */
+}
+
+.favorite-text {
+  margin-left: 8px; /* Space between the heart icon and the text */
+  color: inherit; /* Inherit color from the parent element */
+  cursor: default; /* Default cursor for the text */
+}
