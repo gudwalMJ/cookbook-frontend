@@ -91,6 +91,7 @@ const Comment = ({ comment, fetchComments }) => {
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
+            placeholder="Edit your comment"
           ></textarea>
           <button onClick={handleUpdate} className="edit-button">
             Update
@@ -101,8 +102,10 @@ const Comment = ({ comment, fetchComments }) => {
         </div>
       ) : (
         <div>
-          <p>{comment.text}</p>
-          <p>By: {comment.author ? comment.author.username : "Unknown"}</p>
+          <p className="comment-text">{comment.text}</p>
+          <p className="comment-author">
+            By: {comment.author ? comment.author.username : "Unknown"}
+          </p>
           <div className="button-group">
             <button onClick={() => setIsEditing(true)}>Edit</button>
             <button onClick={handleDelete}>Delete</button>
