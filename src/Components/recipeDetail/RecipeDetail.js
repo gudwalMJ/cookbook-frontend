@@ -150,9 +150,9 @@ const RecipeDetail = () => {
       <button className="back-button" onClick={() => navigate("/")}>
         &larr; Back to Home
       </button>
-      <h1>{recipe.title}</h1>
+      <h1>Tasty Tale of {recipe.title}</h1>
       <Slideshow images={recipe.imageUrls} />
-      <p>{recipe.description}</p>
+      <p className="recipe-description">{recipe.description}</p>
       {user && (user._id === recipe.creator._id || user.isAdmin) && (
         <div className="button-container">
           <button
@@ -216,13 +216,13 @@ const RecipeDetail = () => {
         <li>
           <strong>Categories:</strong> {recipe.categories.join(", ")}
         </li>
-        <li>
-          <strong>Servings:</strong> {recipe.servings}
-        </li>
       </ul>
       <ul className="details-group-single">
         <li>
           <strong>Preparation Time:</strong> {recipe.preparationTime} minutes
+        </li>
+        <li>
+          <strong>Servings:</strong> {recipe.servings}
         </li>
       </ul>
       <ul className="details-group-single">
@@ -241,13 +241,15 @@ const RecipeDetail = () => {
         </li>
       </ul>
       <h3>Ingredients</h3>
-      <ul>
-        {recipe.ingredients.map((ingredient, index) => (
-          <li key={index}>
-            {ingredient.name} - {ingredient.quantity}
-          </li>
-        ))}
-      </ul>
+      <div className="ingredients">
+        <ul>
+          {recipe.ingredients.map((ingredient, index) => (
+            <li key={index}>
+              {ingredient.name} - {ingredient.quantity}
+            </li>
+          ))}
+        </ul>
+      </div>
       <h3>Preparation Steps</h3>
       <ol>
         {recipe.preparationSteps.map((step, index) => (

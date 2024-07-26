@@ -15,7 +15,7 @@
 
 .recipe-detail h1 {
   font-size: 2.5em;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   color: #333;
   transition: color 0.3s;
 }
@@ -24,19 +24,22 @@
   color: #fff;
 }
 
-.recipe-detail p {
-  font-size: 1.2em;
+.recipe-detail p,
+.recipe-description {
+  font-size: 1.4em;
   color: #666;
   margin-bottom: 20px;
+  margin-top: 50px;
   transition: color 0.3s;
 }
 
-.dark-mode .recipe-detail p {
+.dark-mode .recipe-detail p,
+.dark-mode .recipe-description {
   color: #ccc;
 }
 
 .recipe-detail h3 {
-  font-size: 1.8em;
+  font-size: 2em;
   margin-top: 30px;
   color: #333;
   transition: color 0.3s;
@@ -78,6 +81,7 @@
 
 .back-button {
   display: inline-block;
+  margin-top: 30px;
   margin-bottom: 20px;
   padding: 10px 20px;
   background-color: #09f;
@@ -114,6 +118,7 @@
   font-size: 1em;
   transition: background-color 0.2s;
   width: 150px;
+  margin-top: 10px;
 }
 
 .edit-button {
@@ -155,4 +160,21 @@
 .favorite-button-container {
   display: flex;
   align-items: center;
+}
+
+.ingredients ul {
+  padding: 0;
+  list-style: none;
+}
+
+.ingredients li {
+  font-size: 1.2em;
+  color: #555;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.dark-mode .ingredients li {
+  color: #ccc;
 }
