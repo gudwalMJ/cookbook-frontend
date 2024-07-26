@@ -13,10 +13,11 @@ import { FaFacebook, FaEnvelope } from "react-icons/fa";
 import { SiX } from "react-icons/si";
 import LikeButton from "./LikeButton";
 import RatingStars from "./RatingStars";
-import FavoriteButton from "./FavoriteButton"; // Import FavoriteButton
+import FavoriteButton from "./FavoriteButton";
 import useFetchUser from "./UserFetcher";
 import useFetchRecipe from "./RecipeFetcher";
 import "./RecipeDetail.css";
+import "../comments/Comment.css";
 
 const RecipeDetail = () => {
   const { id } = useParams();
@@ -251,11 +252,13 @@ const RecipeDetail = () => {
         </ul>
       </div>
       <h3>Preparation Steps</h3>
-      <ol>
-        {recipe.preparationSteps.map((step, index) => (
-          <li key={index}>{step}</li>
-        ))}
-      </ol>
+      <div className="prep-steps">
+        <ol>
+          {recipe.preparationSteps.map((step, index) => (
+            <li key={index}>{step}</li>
+          ))}
+        </ol>
+      </div>
       <h3>Comments</h3>
       <CommentForm recipeId={id} fetchComments={fetchComments} />
       <CommentList comments={comments} fetchComments={fetchComments} />

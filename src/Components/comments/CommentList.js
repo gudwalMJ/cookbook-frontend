@@ -1,5 +1,6 @@
 import React from "react";
 import Comment from "./Comment";
+import "./Comment.css"; // Import the CSS file
 
 const CommentList = ({ comments, fetchComments }) => {
   return (

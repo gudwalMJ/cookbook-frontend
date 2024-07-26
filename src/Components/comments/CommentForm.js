@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import API from "../../api/api";
+import "./Comment.css"; // Import the CSS file
 
 const CommentForm = ({ recipeId, fetchComments }) => {
   const [text, setText] = useState("");
@@ -24,14 +25,16 @@ const CommentForm = ({ recipeId, fetchComments }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="comment-form" onSubmit={handleSubmit}>
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Add a comment"
         required
       ></textarea>
-      <button type="submit">Submit</button>
+      <button type="submit" className="submit-comment-btn">
+        Submit
+      </button>
     </form>
   );
 };

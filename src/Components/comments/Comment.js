@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import API from "../../api/api";
+import LikeButton from "./LikeButton"; // Import LikeButton
 import "./Comment.css";
 
 const Comment = ({ comment, fetchComments }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState(comment.text);
-  const [likes, setLikes] = useState(comment.likes ? comment.likes.length : 0);
+  const [likesCount, setLikesCount] = useState(
+    comment.likes ? comment.likes.length : 0
+  );
   const [isLiked, setIsLiked] = useState(
     comment.likes
       ? comment.likes.includes(localStorage.getItem("userId"))
@@ -53,7 +56,7 @@ const Comment = ({ comment, fetchComments }) => {
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      setLikes(response.data.likes.length);
+      setLikesCount(response.data.likes.length);
       setIsLiked(response.data.likes.includes(localStorage.getItem("userId")));
     } catch (error) {
       console.error(
@@ -63,26 +66,53 @@ const Comment = ({ comment, fetchComments }) => {
     }
   };
 
+  const handleUnlike = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await API.put(
+        `/comments/${comment._id}/unlike`,
+        {},
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setLikesCount(response.data.likes.length);
+      setIsLiked(response.data.likes.includes(localStorage.getItem("userId")));
+    } catch (error) {
+      console.error(
+        "Error unliking comment:",
+        error.response?.data?.error || error.message
+      );
+    }
+  };
+
   return (
     <div className="comment">
       {isEditing ? (
-        <div>
+        <div className="edit-mode">
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
           ></textarea>
-          <button onClick={handleUpdate}>Update</button>
-          <button onClick={() => setIsEditing(false)}>Cancel</button>
+          <button onClick={handleUpdate} className="edit-button">
+            Update
+          </button>
+          <button onClick={() => setIsEditing(false)} className="edit-button">
+            Cancel
+          </button>
         </div>
       ) : (
         <div>
           <p>{comment.text}</p>
           <p>By: {comment.author ? comment.author.username : "Unknown"}</p>
-          <button onClick={() => setIsEditing(true)}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
-          <button onClick={handleLike}>
-            {isLiked ? "Unlike" : "Like"} ({likes})
-          </button>
+          <div className="button-group">
+            <button onClick={() => setIsEditing(true)}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
+            <LikeButton
+              userLiked={isLiked}
+              handleLike={handleLike}
+              handleUnlike={handleUnlike}
+              likesCount={likesCount}
+            />
+          </div>
         </div>
       )}
     </div>
