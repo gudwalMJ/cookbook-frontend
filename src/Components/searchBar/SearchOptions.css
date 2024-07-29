@@ -1,0 +1,14 @@
+.search-options {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.dark-mode .search-options {
+  background-color: #444;
+  color: #ffffff;
+}
