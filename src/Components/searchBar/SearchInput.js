@@ -5,24 +5,22 @@ import "./SearchInput.css";
 
 const SearchInput = ({ searchTerm, setSearchTerm, clearSearch }) => {
   return (
-    <div className="search-bar">
-      <div className="search-input-container">
-        <input
-          type="text"
-          placeholder="Search for recipes or ingredients..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-bar-input"
+    <div className="search-input-container">
+      <input
+        type="text"
+        placeholder="Search for recipes or ingredients..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="search-bar-input"
+      />
+      <FontAwesomeIcon icon={faSearch} className="search-icon" />
+      {searchTerm && (
+        <FontAwesomeIcon
+          icon={faTimes}
+          className="clear-icon"
+          onClick={clearSearch}
         />
-        <FontAwesomeIcon icon={faSearch} className="search-icon" />
-        {searchTerm && (
-          <FontAwesomeIcon
-            icon={faTimes}
-            className="clear-icon"
-            onClick={clearSearch}
-          />
-        )}
-      </div>
+      )}
     </div>
   );
 };
