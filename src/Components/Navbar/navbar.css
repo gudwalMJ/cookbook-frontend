@@ -45,11 +45,12 @@
   height: auto;
   transition: width 0.3s;
   margin-top: 20px;
-  margin-bottom: ;
+  margin-bottom: -10px;
 }
 
 .sidebar.open .logo {
   width: 150px; /* Adjust the size of the logo when sidebar is open */
+  margin-top: 10px;
 }
 
 .sidebar ul {

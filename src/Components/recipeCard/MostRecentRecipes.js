@@ -23,16 +23,16 @@ const MostRecentRecipes = () => {
 
   return (
     <div className="most-recent-recipes">
-      <h2 className="section-title">Most Recent</h2>
+      <h2 className="section-title-most-recent">Recently added</h2>
       <div className="most-recent-recipes-grid">
         {recipes.map((recipe) => (
-          <div key={recipe._id} className="most-recent-recipe-card">
+          <div key={recipe._id} className="most-recent-recipe-card recipe-card">
             <img
               src={recipe.imageUrls[0]}
               alt={recipe.title}
-              className="most-recent-recipe-card-image"
+              className="most-recent-recipe-card-image recipe-card-image"
             />
-            <div className="most-recent-recipe-info">
+            <div className="most-recent-recipe-info recipe-info">
               <h3>{recipe.title}</h3>
               <div className="recipe-rating-container">
                 <span className="recipe-rating-text">

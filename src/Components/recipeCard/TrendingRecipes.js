@@ -23,7 +23,7 @@ const TrendingRecipes = () => {
 
   return (
     <div className="trending-recipes">
-      <h2 className="section-title">Trending Now</h2>
+      <h2 className="trending-section-title">Trending</h2>
       <div className="trending-recipes-grid">
         {recipes.map((recipe) => (
           <div key={recipe._id} className="trending-recipe-card">
@@ -34,16 +34,16 @@ const TrendingRecipes = () => {
             />
             <div className="trending-recipe-info">
               <h3>{recipe.title}</h3>
-              <div className="recipe-rating-container">
-                <span className="recipe-rating-text">
+              <div className="trending-recipe-rating-container">
+                <span className="trending-recipe-rating-text">
                   {recipe.averageRating ? recipe.averageRating.toFixed(1) : 0}
                 </span>
-                <div className="star-rating">
+                <div className="trending-star-rating">
                   {[...Array(5)].map((_, i) => (
                     <span
                       key={i}
-                      className={`star ${
-                        i < recipe.averageRating ? "filled" : ""
+                      className={`trending-star ${
+                        i < recipe.averageRating ? "trending-filled" : ""
                       }`}
                     >
                       ★

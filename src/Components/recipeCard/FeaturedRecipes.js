@@ -24,7 +24,7 @@ const FeaturedRecipes = () => {
 
   return (
     <div className="featured-recipes-container">
-      <h2 className="section-title">Popular Right Now</h2>
+      <h2 className="featured-section-title">Popular Right Now</h2>
       <div className="featured-recipes">
         {recipes.map((recipe) => (
           <RecipeCard key={recipe._id} recipe={recipe} />

@@ -9,8 +9,8 @@ const InfoBoard = () => {
       <div className="info-content">
         <img src="/images/profiles/admin.webp" alt="Profile" />
         <p>
-          Hi! I'm Josip Milan. Here you'll find delicious, trusted recipes that
-          will surely fill your stomach with happiness.{" "}
+          Hi! I'm Josip. Welcome to Tasty Tales, where you'll find delicious,
+          trusted recipes that will surely fill your stomach with happiness.{" "}
           <Link to="/about">Learn more...</Link>
         </p>
       </div>

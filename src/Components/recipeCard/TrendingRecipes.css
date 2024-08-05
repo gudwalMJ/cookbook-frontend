@@ -1,16 +1,19 @@
 .trending-recipes {
   width: 100%;
+  margin-top: -10px;
+  margin-left: -50px;
 }
 
-.trending-recipes h2 {
-  text-align: center;
+.trending-section-title {
+  text-align: left;
   margin-bottom: 20px;
 }
 
 .trending-recipes-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  grid-template-columns: repeat(2, 1fr); /* Ensure two columns per row */
+  gap: 10px;
+  justify-content: center; /* Center the grid items */
 }
 
 .trending-recipe-card {
@@ -19,11 +22,18 @@
   border-radius: 8px;
   overflow: hidden;
   width: 100%;
+  max-width: 400px; /* Ensure max width fits well within the grid */
   display: flex;
   flex-direction: column;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
   text-align: center;
+  margin: 0 auto; /* Center the card */
+}
+
+.dark-mode .trending-recipe-card {
+  background-color: #444;
+  color: #fff;
 }
 
 .trending-recipe-card:hover {
@@ -33,12 +43,13 @@
 
 .trending-recipe-card-image {
   width: 100%;
-  height: 150px;
+  height: 130px; /* Increased height for better visibility */
   object-fit: cover;
+  cursor: pointer;
 }
 
 .trending-recipe-info {
-  padding: 10px;
+  padding: 10px; /* Increased padding for better spacing */
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -46,12 +57,16 @@
 }
 
 .trending-recipe-info h3 {
-  font-size: 1em;
+  font-size: 1em; /* Increased font size for better readability */
   color: #333;
   min-height: 2em; /* Ensures enough space for titles */
 }
 
-.recipe-rating-container {
+.dark-mode .trending-recipe-info h3 {
+  color: #fff;
+}
+
+.trending-recipe-rating-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,21 +74,29 @@
   margin-top: 5px;
 }
 
-.recipe-rating-text {
-  font-size: 0.9em;
+.trending-recipe-rating-text {
+  font-size: 1em; /* Increased font size for better readability */
   color: #666;
 }
 
-.star-rating {
+.dark-mode .trending-recipe-rating-text {
+  color: #ddd;
+}
+
+.trending-star-rating {
   display: flex;
   gap: 2px;
 }
 
-.star {
-  font-size: 1em;
+.trending-star {
+  font-size: 0.8em; /* Increased font size for better visibility */
   color: #ccc;
 }
 
-.star.filled {
+.dark-mode .trending-star {
+  color: #555;
+}
+
+.trending-star.trending-filled {
   color: gold;
 }

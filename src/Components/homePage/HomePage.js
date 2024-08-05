@@ -28,8 +28,14 @@ const HomePage = ({ recipes, isLoading, noResults, error }) => {
       )}
       {error && <div className="error">Error: {error}</div>}
 
-      <FeaturedRecipes />
+      <div className="inspiration-section">
+        <h2>
+          Get inspired by one of many{" "}
+          <span className="highlighted-text">Tasty Tales</span>
+        </h2>
+      </div>
 
+      <FeaturedRecipes />
       <div className="content-section">
         <div className="most-recent">
           <MostRecentRecipes />
@@ -39,7 +45,6 @@ const HomePage = ({ recipes, isLoading, noResults, error }) => {
           <TrendingRecipes />
         </div>
       </div>
-
       <HighestRatedRecipes />
     </div>
   );

@@ -6,18 +6,49 @@
   align-items: center;
   background-color: #f8f8f8;
   min-height: 100vh;
+  width: 100%;
 }
 
 .dark-mode .home-page {
   background-color: #333333;
   color: #ffffff;
 }
+.inspiration-section {
+  width: 100%;
+  max-width: 800px;
+  margin: 40px auto;
+  background-color: #f8f8f8;
+  padding: 20px;
+}
+
+.inspiration-section h2 {
+  margin: 0;
+  font-size: 2em;
+  color: #333;
+  text-align: center;
+}
+
+.highlighted-text {
+  color: #d84a28; /* Use the color that works best from your logo palette */
+}
+
+.dark-mode .inspiration-section {
+  background-color: #333;
+  color: #fff;
+}
+
+.dark-mode .inspiration-section h2 {
+  color: #fff;
+}
+
+.dark-mode .highlighted-text {
+  color: #dac098; /* Use a lighter color from your logo palette for contrast */
+}
 
 .featured-recipes-container,
 .highest-rated-recipes {
   width: 100%;
   max-width: 1200px;
-  margin-top: 40px;
   text-align: center;
 }
 

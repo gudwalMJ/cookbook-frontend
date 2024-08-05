@@ -24,7 +24,7 @@ const HighestRatedRecipes = () => {
 
   return (
     <div className="highest-rated-recipes">
-      <h2 className="section-title">Highest Rated</h2>
+      <h2 className="section-title-highest-rated">Highest Rated</h2>
       <div className="recipes-grid">
         {recipes.map((recipe) => (
           <RecipeCard key={recipe._id} recipe={recipe} />
