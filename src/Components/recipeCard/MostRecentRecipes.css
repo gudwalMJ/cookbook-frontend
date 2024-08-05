@@ -1,3 +1,4 @@
+/* MostRecentRecipes.css */
 .most-recent-recipes {
   width: 100%;
   padding: 20px;
@@ -7,7 +8,6 @@
 .section-title-most-recent {
   font-size: 1.8em;
   margin-bottom: 20px;
-  margin-left: 0px;
   text-align: left;
 }
 
@@ -33,7 +33,6 @@
   text-align: center;
   text-decoration: none;
   color: inherit;
-  margin-left: 0px;
 }
 
 .dark-mode .most-recent-recipe-card {

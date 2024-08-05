@@ -1,7 +1,7 @@
+/* TrendingRecipes.css */
 .trending-recipes {
   width: 100%;
-  margin-top: -10px;
-  margin-left: -50px;
+  margin-top: 20px;
 }
 
 .trending-section-title {
@@ -12,7 +12,7 @@
 .trending-recipes-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* Ensure two columns per row */
-  gap: 10px;
+  gap: 20px; /* Consistent gap with other sections */
   justify-content: center; /* Center the grid items */
 }
 

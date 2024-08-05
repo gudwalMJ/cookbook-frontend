@@ -1,9 +1,7 @@
 /* src/components/infoBoard/InfoBoard.css */
 .info-board {
   text-align: center;
-  margin: 100px 0;
-  margin-bottom: 20px;
-  margin-left: -50px;
+  margin: 40px 0;
 }
 
 .info-board h2 {
