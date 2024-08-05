@@ -45,6 +45,7 @@ function App() {
             setNoResults={setNoResults}
             setError={setError}
             darkMode={darkMode}
+            isSidebarOpen={isSidebarOpen}
           />
           <Routes>
             <Route

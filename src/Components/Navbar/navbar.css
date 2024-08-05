@@ -29,7 +29,7 @@
   border: none;
   cursor: pointer;
   outline: none;
-  margin: 10px auto; /* Center the button horizontally */
+  margin: -6px auto; /* Center the button horizontally */
 }
 
 .logo-container {
@@ -44,6 +44,8 @@
   width: 50px; /* Adjust the size of the logo */
   height: auto;
   transition: width 0.3s;
+  margin-top: 20px;
+  margin-bottom: ;
 }
 
 .sidebar.open .logo {
@@ -134,6 +136,7 @@
   color: white;
   font-size: 1.2em;
   margin-top: auto;
+  margin-left: -5px;
   width: 100%;
 }
 

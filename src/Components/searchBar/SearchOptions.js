@@ -16,6 +16,7 @@ const SearchOptions = ({
   setIsLoading,
   setNoResults,
   setError,
+  isSidebarOpen,
 }) => {
   const debouncedSearch = useMemo(
     () =>
@@ -89,7 +90,10 @@ const SearchOptions = ({
   };
 
   return (
-    <div className="search-options">
+    <div
+      className="search-options"
+      style={{ left: isSidebarOpen ? "210px" : "70px" }}
+    >
       <div className="filter-group">
         <div className="filter-title">Difficulty</div>
         <div className="filter-buttons">

@@ -3,8 +3,14 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
-  max-width: 300px;
-  margin-top: 10px;
+  max-width: 300px; /* Match the search bar's max width */
+  position: absolute;
+  top: 60px; /* Adjust this value based on your layout */
+  margin-left: -50px; /* Remove the left offset */
+  background-color: #f8f8f8; /* Background color for the filter options */
+  padding: 20px; /* Padding for some spacing around the filter options */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Optional: add some shadow for better visibility */
+  z-index: 1000; /* Ensure it appears above other content */
 }
 
 .dark-mode .search-options {
@@ -19,7 +25,7 @@
 }
 
 .filter-title {
-  background-color: gold;
+  background-color: #fdd835;
   color: #000;
   padding: 10px;
   border-radius: 4px;
@@ -45,12 +51,12 @@
 
 .filter-button.selected,
 .filter-button:hover {
-  background-color: gold;
+  background-color: #fdd835;
   color: #000;
 }
 
 .dark-mode .filter-title {
-  background-color: gold;
+  background-color: #ffeb3b;
 }
 
 .dark-mode .filter-button {
@@ -61,6 +67,6 @@
 
 .dark-mode .filter-button.selected,
 .dark-mode .filter-button:hover {
-  background-color: gold;
+  background-color: #ffeb3b;
   color: #000;
 }

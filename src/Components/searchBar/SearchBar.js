@@ -7,7 +7,13 @@ import { faSlidersH } from "@fortawesome/free-solid-svg-icons";
 import API from "../../api/api";
 import "./SearchBar.css";
 
-const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
+const SearchBar = ({
+  setRecipes,
+  setIsLoading,
+  setNoResults,
+  setError,
+  isSidebarOpen,
+}) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
@@ -89,7 +95,7 @@ const SearchBar = ({ setRecipes, setIsLoading, setNoResults, setError }) => {
   }, [searchTerm, difficulty, category, sortBy, debouncedSearch]);
 
   return (
-    <div className="search-bar-container">
+    <div className={`search-bar-container ${isSidebarOpen ? "open" : ""}`}>
       <div className="search-bar">
         <FontAwesomeIcon
           icon={faSlidersH}

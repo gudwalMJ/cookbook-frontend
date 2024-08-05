@@ -1,11 +1,12 @@
 .search-bar-container {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   padding: 20px;
   background-color: #f8f8f8;
   transition: background-color 0.3s, color 0.3s;
+  position: relative; /* Position relative for absolute positioning of children */
+  justify-content: flex-start; /* Align to the left */
 }
 
 .dark-mode .search-bar-container {
