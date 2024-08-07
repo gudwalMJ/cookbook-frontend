@@ -7,7 +7,7 @@ const TrendingRecipes = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    API.get("/recipes?sortBy=mostPopular&limit=6")
+    API.get("/recipes?sortBy=mostPopular&limit=3")
       .then((response) => {
         setRecipes(response.data);
       })

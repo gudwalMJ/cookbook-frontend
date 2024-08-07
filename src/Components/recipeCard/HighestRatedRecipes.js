@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import API from "../../api/api"; // Corrected import path
+import API from "../../api/api";
 import RecipeCard from "../recipeCard/RecipeCard";
 import "./HighestRatedRecipes.css";
 
@@ -8,7 +8,7 @@ const HighestRatedRecipes = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    API.get("/recipes?sortBy=highestRated&limit=6")
+    API.get("/recipes?sortBy=highestRated&limit=8")
       .then((response) => {
         setRecipes(response.data);
       })
@@ -23,11 +23,15 @@ const HighestRatedRecipes = () => {
   }
 
   return (
-    <div className="highest-rated-recipes">
-      <h2 className="section-title-highest-rated">Highest Rated</h2>
-      <div className="recipes-grid">
+    <div className="highest-rated-recipes-container">
+      <h2 className="highest-rated-section-title">Highest Rated</h2>
+      <div className="highest-rated-recipes">
         {recipes.map((recipe) => (
-          <RecipeCard key={recipe._id} recipe={recipe} />
+          <RecipeCard
+            key={recipe._id}
+            recipe={recipe}
+            className="highest-rated-recipe-card"
+          />
         ))}
       </div>
     </div>
