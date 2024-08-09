@@ -20,7 +20,10 @@ const SignUp = ({ darkMode }) => {
       localStorage.setItem("token", response.data.token);
       navigate("/");
     } catch (error) {
-      console.error("Error during signup:", error.response.data.error);
+      console.error(
+        "Error during signup:",
+        error.response?.data?.error || error.message
+      );
     }
   };
 
