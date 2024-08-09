@@ -39,15 +39,15 @@
   width: 100%;
   max-width: 800px;
   margin: 20px auto;
-
   padding: 20px;
-  text-align: center; /* Center align text */
+  text-align: left; /* Change from center to left */
 }
 
 .inspiration-section h2 {
   margin: 0;
   font-size: 2em;
   color: #333;
+  text-align: left; /* Ensure the text is aligned to the left */
 }
 
 .highlighted-text {

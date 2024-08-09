@@ -2,12 +2,14 @@
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
+  margin-left: -20px;
 }
 
 .section-title-most-recent {
   font-size: 1.8em;
   margin-bottom: 20px;
   text-align: left;
+  margin-left: 10px;
 }
 
 .dark-mode .section-title-most-recent {
