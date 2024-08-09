@@ -17,7 +17,6 @@ const SearchBar = ({
   const [searchTerm, setSearchTerm] = useState("");
   const [difficulty, setDifficulty] = useState("");
   const [category, setCategory] = useState("");
-  const [sortBy, setSortBy] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleToggleExpand = () => {
@@ -28,7 +27,6 @@ const SearchBar = ({
     setSearchTerm("");
     setDifficulty("");
     setCategory("");
-    setSortBy("");
     setRecipes([]);
     setIsLoading(false);
     setNoResults(false);
@@ -38,12 +36,7 @@ const SearchBar = ({
   const debouncedSearch = useMemo(
     () =>
       debounce(() => {
-        if (
-          searchTerm.trim() === "" &&
-          difficulty === "" &&
-          category === "" &&
-          sortBy === ""
-        ) {
+        if (searchTerm.trim() === "" && difficulty === "" && category === "") {
           setRecipes([]);
           setIsLoading(false);
           setNoResults(false);
@@ -59,7 +52,6 @@ const SearchBar = ({
             query: searchTerm,
             difficulty,
             category,
-            sortBy,
           },
         })
           .then((response) => {
@@ -79,7 +71,6 @@ const SearchBar = ({
       searchTerm,
       difficulty,
       category,
-      sortBy,
       setRecipes,
       setIsLoading,
       setNoResults,
@@ -92,7 +83,7 @@ const SearchBar = ({
     return () => {
       debouncedSearch.cancel();
     };
-  }, [searchTerm, difficulty, category, sortBy, debouncedSearch]);
+  }, [searchTerm, difficulty, category, debouncedSearch]);
 
   return (
     <div className={`search-bar-container ${isSidebarOpen ? "open" : ""}`}>
@@ -116,8 +107,6 @@ const SearchBar = ({
           setDifficulty={setDifficulty}
           category={category}
           setCategory={setCategory}
-          sortBy={sortBy}
-          setSortBy={setSortBy}
           setRecipes={setRecipes}
           setIsLoading={setIsLoading}
           setNoResults={setNoResults}

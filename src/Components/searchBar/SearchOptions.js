@@ -10,8 +10,6 @@ const SearchOptions = ({
   setDifficulty,
   category,
   setCategory,
-  sortBy,
-  setSortBy,
   setRecipes,
   setIsLoading,
   setNoResults,
@@ -21,12 +19,7 @@ const SearchOptions = ({
   const debouncedSearch = useMemo(
     () =>
       debounce(() => {
-        if (
-          searchTerm.trim() === "" &&
-          difficulty === "" &&
-          category === "" &&
-          sortBy === ""
-        ) {
+        if (searchTerm.trim() === "" && difficulty === "" && category === "") {
           setRecipes([]);
           setIsLoading(false);
           setNoResults(false);
@@ -42,7 +35,6 @@ const SearchOptions = ({
             query: searchTerm,
             difficulty,
             category,
-            sortBy,
           },
         })
           .then((response) => {
@@ -62,7 +54,6 @@ const SearchOptions = ({
       searchTerm,
       difficulty,
       category,
-      sortBy,
       setRecipes,
       setIsLoading,
       setNoResults,
@@ -75,7 +66,7 @@ const SearchOptions = ({
     return () => {
       debouncedSearch.cancel();
     };
-  }, [searchTerm, difficulty, category, sortBy, debouncedSearch]);
+  }, [searchTerm, difficulty, category, debouncedSearch]);
 
   const handleDifficultyClick = (option) => {
     setDifficulty((prev) => (prev === option ? "" : option));
@@ -83,10 +74,6 @@ const SearchOptions = ({
 
   const handleCategoryClick = (option) => {
     setCategory((prev) => (prev === option ? "" : option));
-  };
-
-  const handleSortByClick = (option) => {
-    setSortBy((prev) => (prev === option ? "" : option));
   };
 
   return (
@@ -135,24 +122,6 @@ const SearchOptions = ({
               {option}
             </button>
           ))}
-        </div>
-      </div>
-      <div className="filter-group">
-        <div className="filter-title">Sort By</div>
-        <div className="filter-buttons">
-          {["Newest", "Oldest", "Most Popular", "Highest Rated"].map(
-            (option) => (
-              <button
-                key={option}
-                className={`filter-button ${
-                  sortBy === option ? "selected" : ""
-                }`}
-                onClick={() => handleSortByClick(option)}
-              >
-                {option}
-              </button>
-            )
-          )}
         </div>
       </div>
     </div>
