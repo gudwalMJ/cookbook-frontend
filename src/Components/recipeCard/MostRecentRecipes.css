@@ -141,3 +141,40 @@
 .dark-mode .recipe-card-star-filled {
   color: gold;
 }
+
+/* Responsive Styles */
+
+/* For screens 1200px and below */
+@media (max-width: 1200px) {
+  .most-recent-recipe-card {
+    width: calc(48% - 20px); /* Two items per row */
+  }
+  .most-recent-recipes {
+    margin-left: -8px;
+  }
+}
+
+/* For screens 900px and below */
+@media (max-width: 900px) {
+  .most-recent-recipe-card {
+    width: calc(50% - 20px); /* Two items per row for smaller screens */
+  }
+}
+
+/* For screens 600px and below */
+@media (max-width: 600px) {
+  .most-recent-recipe-card {
+    width: 100%; /* One item per row for very small screens */
+    margin: 0 0 20px 0; /* Adjust margin for spacing between cards */
+  }
+  .most-recent-recipes {
+    margin-left: -8px;
+  }
+  .section-title-most-recent {
+    margin-left: 0px;
+  }
+
+  .most-recent-recipes-grid {
+    gap: 15px; /* Smaller gap for smaller screens */
+  }
+}

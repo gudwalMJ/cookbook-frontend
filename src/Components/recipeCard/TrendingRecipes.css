@@ -1,7 +1,8 @@
 .trending-recipes {
   width: 100%;
   margin-top: -25px;
-  margin-right: 15px;
+  margin-right: 20px;
+  margin-left: -10px;
 }
 
 .trending-section-title {
@@ -102,4 +103,38 @@
 
 .trending-star.trending-filled {
   color: gold;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .trending-recipe-card {
+    max-width: 400px; /* Adjust max width for medium screens */
+  }
+
+  .trending-recipes {
+    margin-top: -45px;
+    margin-left: -5px; /* Adjust left margin for medium screens */
+  }
+}
+
+@media (max-width: 900px) {
+  .trending-recipe-card {
+    max-width: 300px; /* Further reduce max width for smaller screens */
+  }
+
+  .trending-recipes {
+    margin-left: 0; /* Remove left margin for smaller screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .trending-recipe-card {
+    max-width: 100%; /* Full width for very small screens */
+  }
+
+  .trending-recipes {
+    margin-left: 45px;
+    margin-bottom: 30px;
+    margin-top: 0; /* Adjust top margin for very small screens */
+  }
 }

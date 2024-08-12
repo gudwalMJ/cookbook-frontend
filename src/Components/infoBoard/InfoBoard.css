@@ -1,7 +1,7 @@
-/* src/components/infoBoard/InfoBoard.css */
 .info-board {
   text-align: center;
   margin: 40px 0;
+  margin-left: -30px;
 }
 
 .info-board h2 {
@@ -30,4 +30,60 @@
   margin: 0 10px;
   font-size: 1.5em;
   color: #000; /* Change this to your desired color */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+  .info-board {
+    margin-top: 20px;
+    margin-left: -20px; /* Adjust margin for medium screens */
+  }
+
+  .info-board h2 {
+    font-size: 1.4em; /* Slightly smaller font size */
+  }
+
+  .info-content img {
+    width: 130px;
+    height: 130px; /* Slightly smaller image size */
+  }
+}
+
+@media (max-width: 900px) {
+  .info-board {
+    margin-left: 0; /* Remove margin for smaller screens */
+    margin: 20px 0; /* Adjust top and bottom margins */
+  }
+
+  .info-board h2 {
+    font-size: 1.3em; /* Further reduce font size */
+  }
+
+  .info-content img {
+    width: 120px;
+    height: 120px; /* Further reduce image size */
+  }
+
+  .social-icons i {
+    font-size: 1.3em; /* Slightly smaller icons */
+  }
+}
+
+@media (max-width: 600px) {
+  .info-board {
+    margin: 20px auto; /* Center margin for very small screens */
+  }
+
+  .info-board h2 {
+    font-size: 1.2em; /* Reduce font size for very small screens */
+  }
+
+  .info-content img {
+    width: 100px;
+    height: 100px; /* Smaller image size for very small screens */
+  }
+
+  .social-icons i {
+    font-size: 1.2em; /* Smaller icons */
+  }
 }

@@ -27,7 +27,6 @@ const UserRecipes = ({ userId }) => {
 
   return (
     <div className="user-recipes">
-      <h2>Your Recipes</h2>
       <ul>
         {recipes.map((recipe) => (
           <li key={recipe._id} className="recipe-item">

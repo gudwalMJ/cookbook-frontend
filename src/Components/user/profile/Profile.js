@@ -29,7 +29,7 @@ const Profile = ({ darkMode }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [profileImage, setProfileImage] = useState("");
-  const [bio, setBio] = useState(""); // Add bio state
+  const [bio, setBio] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddRecipeModalOpen, setIsAddRecipeModalOpen] = useState(false);
 
@@ -43,7 +43,7 @@ const Profile = ({ darkMode }) => {
       setUser(userData);
       setUsername(userData.username);
       setProfileImage(userData.profileImage);
-      setBio(userData.bio); // Set bio from response
+      setBio(userData.bio);
       if (!userData.favorites) {
         userData.favorites = []; // Initialize favorites if it's not present
       }
@@ -86,7 +86,7 @@ const Profile = ({ darkMode }) => {
       <h1>Profile</h1>
       <img src={user.profileImage} alt="Profile" className="profile-image" />
       <p>Username: {user.username}</p>
-      <p>Bio: {user.bio}</p> {/* Display bio */}
+      <p>Bio: {user.bio}</p>
       <button onClick={() => setIsModalOpen(true)}>Update Profile</button>
       <button onClick={() => setIsAddRecipeModalOpen(true)}>Add Recipe</button>
       <Modal
@@ -141,7 +141,10 @@ const Profile = ({ darkMode }) => {
         closeModal={() => setIsAddRecipeModalOpen(false)}
         fetchRecipes={() => {}}
       />
-      <UserRecipes userId={user._id} />
+      <h2>Your Recipes</h2>
+      <div className="user-recipes-list">
+        <UserRecipes userId={user._id} />
+      </div>
       <h2>Favorite Recipes</h2>
       <div className="favorites-list">
         {user.favorites.map((recipe) => (

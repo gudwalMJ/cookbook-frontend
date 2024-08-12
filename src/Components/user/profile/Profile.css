@@ -1,12 +1,32 @@
 .profile-page {
   padding: 20px;
-  max-width: 800px;
+  max-width: 1200px; /* Increase the max-width for better alignment with other sections */
   margin: 0 auto;
   background-color: #f8f8f8;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  transition: background-color 0.3s, color 0.3s;
+  position: relative; /* For background overlay */
+  z-index: 1; /* Ensure it sits above the background */
+}
+
+.profile-page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../../assets/images/LightModeBackground.png"); /* Add your background image path */
+  background-size: 40% 50%;
+  background-repeat: repeat;
+  background-position: initial;
+  opacity: 0.1; /* Adjust the transparency */
+  z-index: -1;
+}
+
+.dark-mode .profile-page::before {
+  background-image: url("../../../assets/images/DarkModeBackground.png"); /* Dark mode background image */
 }
 
 .dark-mode .profile-page {
@@ -87,10 +107,14 @@
   border-color: #09f;
 }
 
-.favorites-list {
-  display: flex;
-  flex-wrap: wrap;
+/* Updated favorites and user recipes grid layout */
+.favorites-list,
+.user-recipes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .modal {
