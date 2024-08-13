@@ -5,6 +5,7 @@ import HomePage from "./components/homePage/HomePage";
 import RecipeDetail from "./components/recipeDetail/RecipeDetail.js";
 import Navbar from "./components/navbar/Navbar.js";
 import EditRecipe from "./components/editRecipe/EditRecipe";
+import AddRecipe from "./components/addRecipe/AddRecipe";
 import SearchBar from "./components/searchBar/SearchBar";
 import Favorites from "./components/favorites/Favorites";
 // User Components
@@ -36,8 +37,6 @@ const AppContent = () => {
 
   return (
     <div className={`app ${darkMode ? "dark-mode" : ""}`}>
-      {" "}
-      {/* Apply dark mode class */}
       <Navbar
         isSidebarOpen={isSidebarOpen}
         toggleSidebar={toggleSidebar}
@@ -45,7 +44,6 @@ const AppContent = () => {
         setDarkMode={setDarkMode}
       />
       <div className={`main-content ${isSidebarOpen ? "expanded" : ""}`}>
-        {/* Conditionally render SearchBar */}
         {!shouldHideSearchBar && (
           <SearchBar
             setRecipes={setRecipes}
@@ -76,8 +74,9 @@ const AppContent = () => {
           <Route path="/login" element={<Login darkMode={darkMode} />} />
           <Route path="/profile" element={<Profile darkMode={darkMode} />} />
           <Route path="/edit-recipe/:id" element={<EditRecipe />} />
-          <Route path="/favorites" element={<Favorites />} />{" "}
-          {/* Add the Favorites route */}
+          <Route path="/add-recipe" element={<AddRecipe />} />{" "}
+          {/* Add this route */}
+          <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </div>
     </div>

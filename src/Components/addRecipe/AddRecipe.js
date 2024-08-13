@@ -1,11 +1,9 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Modal from "react-modal";
 import "./AddRecipe.css";
 
-Modal.setAppElement("#root"); // For accessibility
-
-const AddRecipe = ({ isModalOpen, closeModal, fetchRecipes }) => {
+const AddRecipe = ({ fetchRecipes }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState([{ name: "", quantity: "" }]);
@@ -29,6 +27,8 @@ const AddRecipe = ({ isModalOpen, closeModal, fetchRecipes }) => {
     "Others",
   ];
 
+  const navigate = useNavigate();
+
   const handleAddRecipe = async (e) => {
     e.preventDefault();
     try {
@@ -49,8 +49,8 @@ const AddRecipe = ({ isModalOpen, closeModal, fetchRecipes }) => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert("Recipe added successfully");
-      closeModal();
       fetchRecipes();
+      navigate("/profile"); // Navigate back to profile or wherever appropriate
     } catch (error) {
       console.error(
         "Error adding recipe:",
@@ -100,15 +100,9 @@ const AddRecipe = ({ isModalOpen, closeModal, fetchRecipes }) => {
   };
 
   return (
-    <Modal
-      isOpen={isModalOpen}
-      onRequestClose={closeModal}
-      contentLabel="Add Recipe"
-      className="modal"
-      overlayClassName="overlay"
-    >
+    <div className="add-recipe">
+      <h2>Add Recipe</h2>
       <form onSubmit={handleAddRecipe}>
-        <h2>Add Recipe</h2>
         <input
           type="text"
           placeholder="Title"
@@ -124,7 +118,7 @@ const AddRecipe = ({ isModalOpen, closeModal, fetchRecipes }) => {
         />
         <h3>Ingredients</h3>
         {ingredients.map((ingredient, index) => (
-          <div key={index}>
+          <div className="ingredient-step" key={index}>
             <input
               type="text"
               placeholder="Name"
@@ -145,20 +139,21 @@ const AddRecipe = ({ isModalOpen, closeModal, fetchRecipes }) => {
             />
           </div>
         ))}
-        <button type="button" onClick={addIngredient}>
+        <button type="button" className="add-button" onClick={addIngredient}>
           Add Ingredient
         </button>
         <h3>Preparation Steps</h3>
         {preparationSteps.map((step, index) => (
           <textarea
             key={index}
+            className="step-textarea"
             placeholder={`Step ${index + 1}`}
             value={step}
             onChange={(e) => handleStepChange(index, e.target.value)}
             required
           />
         ))}
-        <button type="button" onClick={addStep}>
+        <button type="button" className="add-button" onClick={addStep}>
           Add Step
         </button>
         <h3>Images</h3>
@@ -172,7 +167,7 @@ const AddRecipe = ({ isModalOpen, closeModal, fetchRecipes }) => {
             required
           />
         ))}
-        <button type="button" onClick={addImage}>
+        <button type="button" className="add-button" onClick={addImage}>
           Add Image
         </button>
         <input
@@ -209,12 +204,18 @@ const AddRecipe = ({ isModalOpen, closeModal, fetchRecipes }) => {
             </label>
           ))}
         </div>
-        <button type="submit">Add Recipe</button>
-        <button type="button" onClick={closeModal}>
+        <button type="submit" className="submit-button">
+          Add Recipe
+        </button>
+        <button
+          type="button"
+          className="cancel-button"
+          onClick={() => navigate("/profile")}
+        >
           Cancel
         </button>
       </form>
-    </Modal>
+    </div>
   );
 };
 

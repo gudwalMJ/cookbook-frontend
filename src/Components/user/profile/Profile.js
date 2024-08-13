@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import axios from "axios";
 import Modal from "react-modal";
+
 // Import Components
-import AddRecipe from "../../addRecipe/AddRecipe";
 import UserRecipes from "../../userRecipes/UserRecipes";
 import RecipeCard from "../../recipeCard/RecipeCard";
 // Styling
 import "./Profile.css";
 
-Modal.setAppElement("#root");
+Modal.setAppElement("#root"); // Ensure this is set for accessibility
 
 const profileImages = [
   "/images/profiles/profile_1.png",
@@ -22,7 +22,6 @@ const profileImages = [
   "/images/profiles/profile_8.png",
   "/images/profiles/profile_9.png",
   "/images/profiles/profile_10.png",
-  // "/images/profiles/admin.webp" // Remove admin image
 ];
 
 const Profile = ({ darkMode }) => {
@@ -32,9 +31,8 @@ const Profile = ({ darkMode }) => {
   const [profileImage, setProfileImage] = useState("");
   const [bio, setBio] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAddRecipeModalOpen, setIsAddRecipeModalOpen] = useState(false);
+  const navigate = useNavigate(); // Use the navigate hook
 
-  // Move fetchUser outside useEffect
   const fetchUser = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -47,7 +45,7 @@ const Profile = ({ darkMode }) => {
       setProfileImage(userData.profileImage);
       setBio(userData.bio);
       if (!userData.favorites) {
-        userData.favorites = []; // Initialize favorites if it's not present
+        userData.favorites = [];
       }
     } catch (error) {
       console.error(
@@ -91,7 +89,6 @@ const Profile = ({ darkMode }) => {
       <p>Bio: {user.bio}</p>
       <button
         onClick={() => {
-          console.log("Update Profile Clicked");
           setIsModalOpen(true);
         }}
       >
@@ -99,8 +96,7 @@ const Profile = ({ darkMode }) => {
       </button>
       <button
         onClick={() => {
-          console.log("Add Recipe Clicked");
-          setIsAddRecipeModalOpen(true);
+          navigate("/add-recipe"); // Navigate to the add recipe page
         }}
       >
         Add Recipe
@@ -154,11 +150,6 @@ const Profile = ({ darkMode }) => {
         </form>
       </Modal>
 
-      <AddRecipe
-        isModalOpen={isAddRecipeModalOpen}
-        closeModal={() => setIsAddRecipeModalOpen(false)}
-        fetchRecipes={fetchUser} // Refresh recipes after adding a new one
-      />
       <h2>Your Recipes</h2>
       <div className="user-recipes-list">
         <UserRecipes userId={user._id} />

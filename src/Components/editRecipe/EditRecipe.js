@@ -136,7 +136,7 @@ const EditRecipe = () => {
         />
         <h3>Ingredients</h3>
         {ingredients.map((ingredient, index) => (
-          <div key={index}>
+          <div key={index} className="ingredient-step">
             <input
               type="text"
               placeholder="Name"
@@ -157,8 +157,8 @@ const EditRecipe = () => {
             />
           </div>
         ))}
-        <button type="button" onClick={addIngredient}>
-          Add Ingredient
+        <button type="button" onClick={addIngredient} className="add-button">
+          + Add Ingredient
         </button>
         <h3>Preparation Steps</h3>
         {preparationSteps.map((step, index) => (
@@ -168,10 +168,11 @@ const EditRecipe = () => {
             value={step}
             onChange={(e) => handleStepChange(index, e.target.value)}
             required
+            className="step-textarea"
           />
         ))}
-        <button type="button" onClick={addStep}>
-          Add Step
+        <button type="button" onClick={addStep} className="add-button">
+          + Add Step
         </button>
         <h3>Images</h3>
         {imageUrls.map((url, index) => (
@@ -184,8 +185,8 @@ const EditRecipe = () => {
             required
           />
         ))}
-        <button type="button" onClick={addImage}>
-          Add Image
+        <button type="button" onClick={addImage} className="add-button">
+          + Add Image
         </button>
         <input
           type="number"
@@ -222,8 +223,14 @@ const EditRecipe = () => {
             </label>
           ))}
         </div>
-        <button type="submit">Update Recipe</button>
-        <button type="button" onClick={() => navigate(`/recipes/${id}`)}>
+        <button type="submit" className="submit-button">
+          Update Recipe
+        </button>
+        <button
+          type="button"
+          onClick={() => navigate(`/recipes/${id}`)}
+          className="cancel-button"
+        >
           Cancel
         </button>
       </form>
