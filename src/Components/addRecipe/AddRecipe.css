@@ -5,6 +5,23 @@
   background: linear-gradient(135deg, #f3f3f3, #e2e2e2);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.add-recipe::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/images/LightModeBackground.png"); /* Replace with your image path */
+  background-size: 40% 50%;
+  background-position: center;
+  opacity: 0.1;
+  z-index: -1;
 }
 
 .add-recipe h2 {
@@ -17,18 +34,28 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
+  align-items: center;
+}
+
+.add-recipe form input,
+.add-recipe form textarea,
+.add-button,
+.submit-button,
+.cancel-button {
+  width: 100%;
+  max-width: 760px;
+  padding: 12px 15px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 1.1em;
+  transition: background-color 0.3s, border 0.3s, box-shadow 0.3s;
 }
 
 .add-recipe form input,
 .add-recipe form textarea {
-  width: 100%;
-  padding: 12px 15px;
   border: 1px solid #ccc;
-  border-radius: 8px;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-  font-size: 1.1em;
   background-color: #fff;
-  transition: border 0.3s, box-shadow 0.3s;
 }
 
 .add-recipe form input:focus,
@@ -37,40 +64,18 @@
   box-shadow: inset 0 2px 8px rgba(0, 153, 255, 0.2);
 }
 
-.ingredient-step {
-  display: flex;
-  gap: 10px;
-}
-
-.step-textarea {
-  height: 80px;
-}
-
-.add-button {
-  padding: 10px 15px;
-  font-size: 1em;
-  color: #fff;
-  background-color: #09f;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.add-button:hover {
-  background-color: #007acc;
-}
-
+.add-button,
 .submit-button,
 .cancel-button {
-  padding: 12px 20px;
-  font-size: 1.1em;
   color: #fff;
   background-color: #09f;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s;
+}
+
+.add-button:hover,
+.submit-button:hover {
+  background-color: #007acc;
 }
 
 .cancel-button {
@@ -78,18 +83,27 @@
   color: #333;
 }
 
-.submit-button:hover {
-  background-color: #007acc;
-}
-
 .cancel-button:hover {
   background-color: #999;
+}
+
+.ingredient-step {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 760px;
+}
+
+.step-textarea {
+  height: 80px;
 }
 
 .categories {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  width: 100%;
+  max-width: 760px;
 }
 
 .categories label {
@@ -101,7 +115,6 @@
   border-radius: 8px;
   border: 1px solid #ccc;
   cursor: pointer;
-  transition: background-color 0.3s, border-color 0.3s;
   font-size: 0.9em;
   width: auto;
   min-width: 100px;
@@ -115,4 +128,56 @@
 
 .categories input {
   margin-right: 5px;
+}
+
+/* Dark Mode Styles */
+.dark-mode .add-recipe {
+  background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .add-recipe::before {
+  background-image: url("../../assets/images/DarkModeBackground.png"); /* Dark mode background image path */
+  opacity: 0.2; /* Slightly higher opacity for better visibility */
+}
+
+.dark-mode .add-recipe h2 {
+  color: #f0f0f0;
+}
+
+.dark-mode .add-recipe form input,
+.dark-mode .add-recipe form textarea {
+  border: 1px solid #555;
+  background-color: #333;
+  color: #fff;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .add-recipe form input:focus,
+.dark-mode .add-recipe form textarea:focus {
+  border-color: #09f;
+  box-shadow: inset 0 2px 8px rgba(0, 153, 255, 0.3);
+}
+
+.dark-mode .add-button,
+.dark-mode .submit-button,
+.dark-mode .cancel-button {
+  background-color: #007acc;
+  color: #fff;
+}
+
+.dark-mode .cancel-button {
+  background-color: #555;
+  color: #ccc;
+}
+
+.dark-mode .categories label {
+  background-color: #444;
+  border-color: #666;
+  color: #ddd;
+}
+
+.dark-mode .categories label:hover {
+  background-color: #555;
+  border-color: #09f;
 }

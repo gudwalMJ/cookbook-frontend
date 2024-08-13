@@ -1,6 +1,15 @@
+html,
 body {
+  height: 100%;
   margin: 0;
   padding: 0;
+  background-color: inherit; /* Use this to inherit the dark mode background */
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+
   font-family: Arial, sans-serif;
   box-sizing: border-box;
 }
@@ -12,4 +21,16 @@ body {
 
 .main-content.expanded {
   margin-left: 200px; /* Adjust this value to match the expanded width of your sidebar */
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: inherit; /* Inherit the background color */
+}
+
+.dark-mode #root {
+  background-color: #1a1a1a; /* Dark mode background color */
 }
