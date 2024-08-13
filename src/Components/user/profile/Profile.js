@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+
 import axios from "axios";
 import Modal from "react-modal";
 // Import Components
@@ -33,6 +34,7 @@ const Profile = ({ darkMode }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddRecipeModalOpen, setIsAddRecipeModalOpen] = useState(false);
 
+  // Move fetchUser outside useEffect
   const fetchUser = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -65,12 +67,12 @@ const Profile = ({ darkMode }) => {
       const token = localStorage.getItem("token");
       await axios.put(
         "/api/users/me",
-        { username, password, profileImage, bio }, // Include bio in update
+        { username, password, profileImage, bio },
         { headers: { Authorization: `Bearer ${token}` } }
       );
       alert("Profile updated successfully");
-      setIsModalOpen(false);
-      fetchUser(); // Refresh the user data
+      fetchUser(); // Refresh user data
+      setIsModalOpen(false); // Close the modal
     } catch (error) {
       console.error(
         "Error updating profile:",
@@ -87,8 +89,23 @@ const Profile = ({ darkMode }) => {
       <img src={user.profileImage} alt="Profile" className="profile-image" />
       <p>Username: {user.username}</p>
       <p>Bio: {user.bio}</p>
-      <button onClick={() => setIsModalOpen(true)}>Update Profile</button>
-      <button onClick={() => setIsAddRecipeModalOpen(true)}>Add Recipe</button>
+      <button
+        onClick={() => {
+          console.log("Update Profile Clicked");
+          setIsModalOpen(true);
+        }}
+      >
+        Update Profile
+      </button>
+      <button
+        onClick={() => {
+          console.log("Add Recipe Clicked");
+          setIsAddRecipeModalOpen(true);
+        }}
+      >
+        Add Recipe
+      </button>
+
       <Modal
         isOpen={isModalOpen}
         onRequestClose={() => setIsModalOpen(false)}
@@ -136,10 +153,11 @@ const Profile = ({ darkMode }) => {
           </button>
         </form>
       </Modal>
+
       <AddRecipe
         isModalOpen={isAddRecipeModalOpen}
         closeModal={() => setIsAddRecipeModalOpen(false)}
-        fetchRecipes={() => {}}
+        fetchRecipes={fetchUser} // Refresh recipes after adding a new one
       />
       <h2>Your Recipes</h2>
       <div className="user-recipes-list">
