@@ -5,7 +5,7 @@ import Modal from "react-modal";
 
 // Import Components
 import UserRecipes from "../../userRecipes/UserRecipes";
-import RecipeCard from "../../recipeCard/RecipeCard";
+// import RecipeCard from "../../recipeCard/RecipeCard";
 // Styling
 import "./Profile.css";
 
@@ -85,8 +85,8 @@ const Profile = ({ darkMode }) => {
     <div className={`profile-page ${darkMode ? "dark-mode" : ""}`}>
       <h1>Profile</h1>
       <img src={user.profileImage} alt="Profile" className="profile-image" />
-      <p>Username: {user.username}</p>
-      <p>Bio: {user.bio}</p>
+      <p className="profile-username">{user.username}</p>
+      <p className="profile-bio">{user.bio}</p>
       <button
         onClick={() => {
           setIsModalOpen(true);
@@ -153,12 +153,6 @@ const Profile = ({ darkMode }) => {
       <h2>Your Recipes</h2>
       <div className="user-recipes-list">
         <UserRecipes userId={user._id} />
-      </div>
-      <h2>Favorite Recipes</h2>
-      <div className="favorites-list">
-        {user.favorites.map((recipe) => (
-          <RecipeCard key={recipe._id} recipe={recipe} />
-        ))}
       </div>
     </div>
   );

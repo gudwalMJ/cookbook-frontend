@@ -33,12 +33,16 @@ const Favorites = () => {
   return (
     <div className="favorites-page">
       <h1>My Favorite Recipes</h1>
-      <div className="favorites-list">
+      <div className="favorites-recipes">
         {favorites.length === 0 ? (
           <p>No favorite recipes found.</p>
         ) : (
           favorites.map((recipe) => (
-            <RecipeCard key={recipe._id} recipe={recipe} />
+            <RecipeCard
+              key={recipe._id}
+              recipe={recipe}
+              className="favorites-recipe-card"
+            />
           ))
         )}
       </div>

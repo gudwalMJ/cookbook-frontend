@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import RecipeCard from "../recipeCard/RecipeCard";
 import "./UserRecipes.css";
 
 const UserRecipes = ({ userId }) => {
   const [recipes, setRecipes] = useState([]);
-  const navigate = useNavigate();
 
   const fetchUserRecipes = useCallback(async () => {
     try {
@@ -25,21 +24,23 @@ const UserRecipes = ({ userId }) => {
     }
   }, [userId, fetchUserRecipes]);
 
+  const handleEditRecipe = (recipeId) => {
+    // Navigate to the edit recipe page
+    window.location.href = `/edit-recipe/${recipeId}`;
+  };
+
   return (
-    <div className="user-recipes">
-      <ul>
+    <div className="user-recipes-container">
+      <h2 className="user-recipes-title">Your Recipes</h2>
+      <div className="user-recipes-grid">
         {recipes.map((recipe) => (
-          <li key={recipe._id} className="recipe-item">
-            <Link to={`/recipes/${recipe._id}`}>{recipe.title}</Link>
-            <button
-              onClick={() => navigate(`/edit-recipe/${recipe._id}`)}
-              className="edit-button"
-            >
-              Edit
-            </button>
-          </li>
+          <RecipeCard
+            key={recipe._id}
+            recipe={recipe}
+            onEdit={() => handleEditRecipe(recipe._id)}
+          />
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
