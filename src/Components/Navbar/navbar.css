@@ -1,6 +1,7 @@
+/* Base sidebar styles */
 .sidebar {
   height: 100%;
-  width: 70px; /* Initial width increased by 10px */
+  width: 70px;
   position: fixed;
   top: 0;
   left: 0;
@@ -12,7 +13,7 @@
 }
 
 .sidebar.open {
-  width: 210px; /* Expanded width increased by 10px */
+  width: 210px;
 }
 
 .sidebar-header {
@@ -29,7 +30,7 @@
   border: none;
   cursor: pointer;
   outline: none;
-  margin: -6px auto; /* Center the button horizontally */
+  margin: -6px auto;
 }
 
 .logo-container {
@@ -37,11 +38,11 @@
   justify-content: center;
   align-items: center;
   margin: 10px 0;
-  width: 100%; /* Ensure it takes full width */
+  width: 100%;
 }
 
 .logo {
-  width: 50px; /* Adjust the size of the logo */
+  width: 50px;
   height: auto;
   transition: width 0.3s;
   margin-top: 20px;
@@ -49,7 +50,7 @@
 }
 
 .sidebar.open .logo {
-  width: 150px; /* Adjust the size of the logo when sidebar is open */
+  width: 150px;
   margin-top: 10px;
 }
 
@@ -58,12 +59,12 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center icons when sidebar is closed */
-  gap: 15px; /* Add space between the list items */
+  align-items: center;
+  gap: 15px;
 }
 
 .sidebar.open ul {
-  align-items: flex-start; /* Align items to the start when sidebar is open */
+  align-items: flex-start;
   padding-left: 20px;
 }
 
@@ -77,19 +78,18 @@
   color: white;
   display: flex;
   align-items: center;
-  justify-content: center; /* Center icons when sidebar is closed */
+  justify-content: center;
   border: none;
   background: none;
   cursor: pointer;
   outline: none;
   width: 100%;
-  text-align: center; /* Center text when sidebar is open */
+  text-align: center;
 }
 
 .sidebar.open .nav-link {
-  justify-content: flex-start; /* Align icons and text to the start when sidebar is open */
-  text-align: left; /* Align text to the left when sidebar is open */
-  padding-left: 0; /* Remove additional padding */
+  justify-content: flex-start;
+  text-align: left;
 }
 
 .nav-link:hover {
@@ -109,13 +109,12 @@
 }
 
 .sidebar.open ul li button.nav-link {
-  text-align: left; /* Align text to the left when sidebar is open */
-  padding-left: 0; /* Remove additional padding */
+  text-align: left;
 }
 
 .tooltip {
   position: absolute;
-  left: 75px; /* Adjust position to account for new width */
+  left: 75px;
   background-color: #333;
   color: #fff;
   padding: 5px 10px;
@@ -132,7 +131,7 @@
 .dark-mode-toggle {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Align to the left */
+  justify-content: flex-start;
   padding: 15px 10px;
   color: white;
   font-size: 1.2em;
@@ -150,7 +149,7 @@
   display: inline-block;
   width: 40px;
   height: 20px;
-  margin-right: 10px; /* Adjust margin to align with other icons */
+  margin-right: 10px;
 }
 
 .toggle-switch input {
@@ -190,9 +189,58 @@
 }
 
 .dark-mode-toggle span {
-  cursor: default; /* Normal cursor for the text */
+  cursor: default;
 }
 
 .toggle-switch label {
-  cursor: pointer; /* Pointer cursor for the slider */
+  cursor: pointer;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .sidebar {
+    width: 60px; /* Smaller width on mobile */
+  }
+
+  .sidebar.open {
+    width: 200px; /* Slightly smaller expanded width */
+  }
+
+  .logo {
+    width: 40px; /* Smaller logo size */
+  }
+
+  .sidebar.open .logo {
+    width: 120px;
+  }
+
+  .sidebar-toggle {
+    font-size: 1.3em; /* Slightly smaller toggle button */
+  }
+
+  .nav-link {
+    font-size: 1em; /* Smaller font size for icons */
+  }
+
+  .dark-mode-toggle {
+    font-size: 1em;
+  }
+
+  .toggle-switch {
+    width: 30px; /* Smaller toggle switch */
+    height: 15px;
+  }
+
+  .toggle-switch label::before {
+    height: 10px;
+    width: 10px;
+  }
+
+  .toggle-switch input:checked + label::before {
+    transform: translateX(15px);
+  }
+
+  .tooltip {
+    left: 55px; /* Adjust position for smaller sidebar width */
+  }
 }

@@ -182,8 +182,12 @@
 }
 
 @media (max-width: 600px) {
+  .home-page {
+    width: 100%;
+  }
+
   .inspiration-section h2 {
-    margin-left: 0; /* Remove margin for very small screens */
+    margin-left: 0px; /* Remove margin for very small screens */
   }
 
   .recipe-card,
@@ -193,7 +197,7 @@
     width: 1000px; /* Increase width to 90% of the parent container */
     max-width: 90%; /* Ensure no overflow */
     display: block; /* Ensure the card behaves as a block element */
-    margin: 10px auto; /* Center the card with auto margins and add some spacing */
+    margin: 10px auto;
   }
 
   .most-recent-recipes-grid,
