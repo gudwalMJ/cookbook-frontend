@@ -58,6 +58,6 @@
   }
   .user-recipes-grid .recipe-card {
     flex: 1 1 100%; /* One item per row for very small screens */
-    max-width: 100%;
+    max-width: 200px;
   }
 }

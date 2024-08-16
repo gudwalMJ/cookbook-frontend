@@ -206,3 +206,22 @@
 .modal form button[type="button"]:hover {
   background-color: #aaa;
 }
+
+/* Responsive Background Image */
+@media (max-width: 1200px) {
+  .profile-page::before {
+    background-size: 40% 35%;
+  }
+}
+
+@media (max-width: 900px) {
+  .profile-page::before {
+    background-size: 40% 25%;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-page::before {
+    background-size: 80% 15%;
+  }
+}

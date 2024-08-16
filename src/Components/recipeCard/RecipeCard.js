@@ -37,14 +37,14 @@ const RecipeCard = ({ recipe, className, onEdit }) => {
                 </span>
               ))}
             </div>
+            {onEdit && (
+              <button className="recipe-card-edit-button" onClick={onEdit}>
+                <FaEdit />
+              </button>
+            )}
           </div>
         </div>
       </Link>
-      {onEdit && (
-        <button className="recipe-card-edit-button" onClick={onEdit}>
-          <FaEdit />
-        </button>
-      )}
     </div>
   );
 };
