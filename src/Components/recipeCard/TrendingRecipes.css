@@ -17,6 +17,14 @@
   justify-content: center;
 }
 
+/* Ensure the link behaves like a block and doesn't affect the card's size */
+.trending-recipe-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 100%; /* Maintain full width of the card */
+}
+
 .trending-recipe-card {
   background-color: #fff;
   border: none;
@@ -28,8 +36,6 @@
   flex-direction: column;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s;
-  text-decoration: none;
-  color: inherit;
   margin: 0 auto; /* Center the card */
 }
 
