@@ -70,9 +70,9 @@ const Navbar = ({ isSidebarOpen, toggleSidebar, darkMode, setDarkMode }) => {
               </Link>
             </li>
             <li>
-              <Link to="/help" className="nav-link">
+              <Link to="/about" className="nav-link">
                 <FontAwesomeIcon icon={faQuestionCircle} />
-                {isSidebarOpen && <span>Help</span>}
+                {isSidebarOpen && <span>About</span>}
               </Link>
             </li>
             <li>

@@ -8,6 +8,7 @@ import EditRecipe from "./components/editRecipe/EditRecipe";
 import AddRecipe from "./components/addRecipe/AddRecipe";
 import SearchBar from "./components/searchBar/SearchBar";
 import Favorites from "./components/favorites/Favorites";
+import About from "./components/aboutPage/About.js";
 // User Components
 import SignUp from "./components/user/signUp/SignUp.js";
 import Login from "./components/user/login/Login";
@@ -31,9 +32,20 @@ const AppContent = () => {
   const location = useLocation();
 
   // Define paths where SearchBar should be hidden
-  const hideSearchBarPaths = ["/login", "/signup", "/profile"];
+  const hideSearchBarPaths = [
+    "/login",
+    "/signup",
+    "/profile",
+    "/favorites",
+    "/about",
+    "/add-recipe",
+    "/edit-recipe",
+  ];
 
-  const shouldHideSearchBar = hideSearchBarPaths.includes(location.pathname);
+  const shouldHideSearchBar =
+    hideSearchBarPaths.includes(location.pathname) ||
+    location.pathname.startsWith("/edit-recipe") ||
+    location.pathname.startsWith("/recipes/");
 
   return (
     <div className={`app ${darkMode ? "dark-mode" : ""}`}>
@@ -76,6 +88,7 @@ const AppContent = () => {
           <Route path="/edit-recipe/:id" element={<EditRecipe />} />
           <Route path="/add-recipe" element={<AddRecipe />} />
           <Route path="/favorites" element={<Favorites />} />
+          <Route path="/about" element={<About darkMode={darkMode} />} />
         </Routes>
       </div>
     </div>
