@@ -74,8 +74,7 @@ const AppContent = () => {
           <Route path="/login" element={<Login darkMode={darkMode} />} />
           <Route path="/profile" element={<Profile darkMode={darkMode} />} />
           <Route path="/edit-recipe/:id" element={<EditRecipe />} />
-          <Route path="/add-recipe" element={<AddRecipe />} />{" "}
-          {/* Add this route */}
+          <Route path="/add-recipe" element={<AddRecipe />} />
           <Route path="/favorites" element={<Favorites />} />
         </Routes>
       </div>

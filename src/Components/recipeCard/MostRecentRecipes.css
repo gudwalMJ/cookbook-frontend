@@ -22,17 +22,23 @@
   gap: 20px;
 }
 
+/* Ensure the link behaves like a block and doesn't affect the card's size */
+.most-recent-recipe-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: calc(45% - 20px); /* Keep the same size as the card */
+}
+
 .most-recent-recipe-card {
   background-color: #fff;
   border: none;
   border-radius: 8px;
   overflow: hidden;
   margin: 10px;
-  width: calc(45% - 20px); /* Keep the same size */
+  width: 100%; /* Ensure the card takes up the full width of the link */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s, color 0.3s;
-  text-decoration: none;
-  color: inherit;
   display: flex;
   flex-direction: column;
 }
@@ -91,7 +97,7 @@
 
 .recipe-card-info h3 {
   margin-top: 0;
-  font-size: 1.2em;
+  font-size: 1em;
   color: #333;
   transition: color 0.3s;
   text-align: left; /* Align text to the left */
@@ -146,7 +152,7 @@
 
 /* For screens 1200px and below */
 @media (max-width: 1200px) {
-  .most-recent-recipe-card {
+  .most-recent-recipe-card-link {
     width: calc(48% - 20px); /* Two items per row */
   }
   .most-recent-recipes {
@@ -156,14 +162,14 @@
 
 /* For screens 900px and below */
 @media (max-width: 900px) {
-  .most-recent-recipe-card {
+  .most-recent-recipe-card-link {
     width: calc(50% - 20px); /* Two items per row for smaller screens */
   }
 }
 
 /* For screens 600px and below */
 @media (max-width: 600px) {
-  .most-recent-recipe-card {
+  .most-recent-recipe-card-link {
     width: 100%; /* One item per row for very small screens */
     margin: 0 0 20px 0; /* Adjust margin for spacing between cards */
   }
