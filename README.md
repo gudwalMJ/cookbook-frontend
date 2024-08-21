@@ -2,6 +2,9 @@
 
 **TastyTales** is a vibrant recipe-sharing platform designed to inspire culinary creativity. Whether you're a seasoned chef or a kitchen novice, TastyTales offers a space where users can discover, share, and rate a wide variety of recipes. With an intuitive interface, users can easily browse through the latest, highest-rated, and most popular recipes. The platform also allows users to save their favorite recipes, add their own culinary creations, and connect with a community of food enthusiasts. TastyTales is your ultimate destination for exploring and sharing the joy of cooking.
 
+![TastyTales Trailer](./assets/TastyTales_Trailer.gif)
+
+
 ## Features
 
 - **Discover Recipes**: Explore a wide range of recipes, from trending dishes to hidden gems.
