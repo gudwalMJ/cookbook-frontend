@@ -4,7 +4,7 @@ import axios from "axios";
 import Modal from "react-modal";
 
 // Import Components
-import UserRecipes from "../../userRecipes/UserRecipes";
+import UserRecipes from "../../recipes/userRecipes/UserRecipes";
 // import RecipeCard from "../../recipeCard/RecipeCard";
 // Styling
 import "./Profile.css";

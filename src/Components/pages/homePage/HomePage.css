@@ -18,7 +18,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../assets/images/LightModeBackground.png");
+  background-image: url("../../../assets/images/LightModeBackground.png");
   background-size: 20% 30%;
   background-repeat: repeat;
   background-position: initial;
@@ -32,7 +32,7 @@
 }
 
 .dark-mode .home-page::before {
-  background-image: url("../../assets/images/DarkModeBackground.png");
+  background-image: url("../../../assets/images/DarkModeBackground.png");
 }
 
 /* Responsive Adjustments for Background Image */

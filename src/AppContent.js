@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+// Import Pages
+import HomePage from "./components/pages/homePage/HomePage.js";
+import About from "./components/pages/aboutPage/About.js";
 // Import Components
-import HomePage from "./components/homePage/HomePage";
-import RecipeDetail from "./components/recipeDetail/RecipeDetail.js";
+import RecipeDetail from "./components/recipes/recipeDetail/RecipeDetail.js";
 import Navbar from "./components/navbar/Navbar.js";
-import EditRecipe from "./components/editRecipe/EditRecipe";
-import AddRecipe from "./components/addRecipe/AddRecipe";
+import EditRecipe from "./components/recipes/editRecipe/EditRecipe";
+import AddRecipe from "./components/recipes/addRecipe/AddRecipe";
 import SearchBar from "./components/searchBar/SearchBar";
 import Favorites from "./components/favorites/Favorites";
-import About from "./components/aboutPage/About.js";
 // User Components
 import SignUp from "./components/user/signUp/SignUp.js";
 import Login from "./components/user/login/Login";

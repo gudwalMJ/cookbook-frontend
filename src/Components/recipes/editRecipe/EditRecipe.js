@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import "./AddRecipe.css";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import API from "../../../api/api";
+import "./EditRecipe.css";
 
-const AddRecipe = ({ fetchRecipes }) => {
+const EditRecipe = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState([{ name: "", quantity: "" }]);
@@ -27,14 +29,34 @@ const AddRecipe = ({ fetchRecipes }) => {
     "Others",
   ];
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    const fetchRecipe = async () => {
+      try {
+        const response = await API.get(`/recipes/${id}`);
+        const recipe = response.data;
+        setTitle(recipe.title);
+        setDescription(recipe.description);
+        setIngredients(recipe.ingredients);
+        setPreparationSteps(recipe.preparationSteps);
+        setImageUrls(recipe.imageUrls);
+        setServings(recipe.servings);
+        setDifficulty(recipe.difficulty);
+        setPreparationTime(recipe.preparationTime);
+        setCategories(recipe.categories);
+      } catch (error) {
+        console.error("Error fetching recipe:", error.response.data.error);
+      }
+    };
 
-  const handleAddRecipe = async (e) => {
+    fetchRecipe();
+  }, [id]);
+
+  const handleUpdateRecipe = async (e) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      await axios.post(
-        "/api/recipes",
+      await API.put(
+        `/recipes/${id}`,
         {
           title,
           description,
@@ -48,14 +70,10 @@ const AddRecipe = ({ fetchRecipes }) => {
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-      alert("Recipe added successfully");
-      fetchRecipes();
-      navigate("/profile"); // Navigate back to profile or wherever appropriate
+      alert("Recipe updated successfully");
+      navigate(`/recipes/${id}`);
     } catch (error) {
-      console.error(
-        "Error adding recipe:",
-        error.response?.data?.error || error.message
-      );
+      console.error("Error updating recipe:", error.response.data.error);
     }
   };
 
@@ -100,9 +118,9 @@ const AddRecipe = ({ fetchRecipes }) => {
   };
 
   return (
-    <div className="add-recipe">
-      <h2>Add Recipe</h2>
-      <form onSubmit={handleAddRecipe}>
+    <div className="edit-recipe">
+      <h2>Edit Recipe</h2>
+      <form onSubmit={handleUpdateRecipe}>
         <input
           type="text"
           placeholder="Title"
@@ -118,7 +136,7 @@ const AddRecipe = ({ fetchRecipes }) => {
         />
         <h3>Ingredients</h3>
         {ingredients.map((ingredient, index) => (
-          <div className="ingredient-step" key={index}>
+          <div key={index} className="ingredient-step">
             <input
               type="text"
               placeholder="Name"
@@ -139,22 +157,22 @@ const AddRecipe = ({ fetchRecipes }) => {
             />
           </div>
         ))}
-        <button type="button" className="add-button" onClick={addIngredient}>
-          Add Ingredient
+        <button type="button" onClick={addIngredient} className="add-button">
+          + Add Ingredient
         </button>
         <h3>Preparation Steps</h3>
         {preparationSteps.map((step, index) => (
           <textarea
             key={index}
-            className="step-textarea"
             placeholder={`Step ${index + 1}`}
             value={step}
             onChange={(e) => handleStepChange(index, e.target.value)}
             required
+            className="step-textarea"
           />
         ))}
-        <button type="button" className="add-button" onClick={addStep}>
-          Add Step
+        <button type="button" onClick={addStep} className="add-button">
+          + Add Step
         </button>
         <h3>Images</h3>
         {imageUrls.map((url, index) => (
@@ -167,8 +185,8 @@ const AddRecipe = ({ fetchRecipes }) => {
             required
           />
         ))}
-        <button type="button" className="add-button" onClick={addImage}>
-          Add Image
+        <button type="button" onClick={addImage} className="add-button">
+          + Add Image
         </button>
         <input
           type="number"
@@ -198,6 +216,7 @@ const AddRecipe = ({ fetchRecipes }) => {
               <input
                 type="checkbox"
                 value={category}
+                checked={categories.includes(category)}
                 onChange={() => handleCategoryChange(category)}
               />
               {category}
@@ -205,12 +224,12 @@ const AddRecipe = ({ fetchRecipes }) => {
           ))}
         </div>
         <button type="submit" className="submit-button">
-          Add Recipe
+          Update Recipe
         </button>
         <button
           type="button"
+          onClick={() => navigate(`/recipes/${id}`)}
           className="cancel-button"
-          onClick={() => navigate("/profile")}
         >
           Cancel
         </button>
@@ -219,4 +238,4 @@ const AddRecipe = ({ fetchRecipes }) => {
   );
 };
 
-export default AddRecipe;
+export default EditRecipe;

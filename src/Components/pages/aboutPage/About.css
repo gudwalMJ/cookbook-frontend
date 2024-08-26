@@ -18,7 +18,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../assets/images/LightModeBackground.png"); /* Replace with the correct path */
+  background-image: url("../../../assets/images/LightModeBackground.png"); /* Replace with the correct path */
   background-size: 60% 45%;
   background-repeat: repeat;
   background-position: initial;
@@ -32,7 +32,7 @@
 }
 
 .dark-mode .about-page::before {
-  background-image: url("../../assets/images/DarkModeBackground.png"); /* Replace with the correct path */
+  background-image: url("../../../assets/images/DarkModeBackground.png"); /* Replace with the correct path */
 }
 
 .about-page h1 {

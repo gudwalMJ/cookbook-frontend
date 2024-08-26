@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import API from "../../api/api";
-import RecipeCard from "../recipeCard/RecipeCard";
+import RecipeCard from "../recipes/recipeCard/RecipeCard";
 import "./Favorites.css";
 
 const Favorites = () => {

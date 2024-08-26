@@ -1,10 +1,10 @@
 import React from "react";
-import FeaturedRecipes from "../recipeCard/FeaturedRecipes";
-import MostRecentRecipes from "../recipeCard/MostRecentRecipes";
-import InfoBoard from "../infoBoard/InfoBoard";
-import TrendingRecipes from "../recipeCard/TrendingRecipes";
-import HighestRatedRecipes from "../recipeCard/HighestRatedRecipes";
-import RecipeCard from "../recipeCard/RecipeCard";
+import FeaturedRecipes from "../../recipes/recipeCard/FeaturedRecipes";
+import MostRecentRecipes from "../../recipes/recipeCard/MostRecentRecipes";
+import InfoBoard from "../../infoBoard/InfoBoard";
+import TrendingRecipes from "../../recipes/recipeCard/TrendingRecipes";
+import HighestRatedRecipes from "../../recipes/recipeCard/HighestRatedRecipes";
+import RecipeCard from "../../recipes/recipeCard/RecipeCard";
 import "./HomePage.css";
 
 const HomePage = ({ recipes, isLoading, noResults, error }) => {

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import API from "../../api/api";
+import API from "../../../api/api";
 
 const useFetchUser = (
   setUser,

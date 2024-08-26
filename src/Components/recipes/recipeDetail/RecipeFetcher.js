@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import API from "../../api/api";
+import API from "../../../api/api";
 
 const useFetchRecipe = (id, setRecipe, setIsLoading, setError) => {
   useEffect(() => {

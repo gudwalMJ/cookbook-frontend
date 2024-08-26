@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import API from "../../api/api";
-import Slideshow from "../slideshow/Slideshow";
-import CommentList from "../comments/CommentList";
-import CommentForm from "../comments/CommentForm";
+import API from "../../../api/api";
+import Slideshow from "../../slideshow/Slideshow";
+import CommentList from "../../comments/CommentList";
+import CommentForm from "../../comments/CommentForm";
 import {
   FacebookShareButton,
   TwitterShareButton,
@@ -17,7 +17,7 @@ import FavoriteButton from "./FavoriteButton";
 import useFetchUser from "./UserFetcher";
 import useFetchRecipe from "./RecipeFetcher";
 import "./RecipeDetail.css";
-import "../comments/Comment.css";
+import "../../comments/Comment.css";
 
 const RecipeDetail = () => {
   const { id } = useParams();
